@@ -131,7 +131,7 @@ Swal.fire({
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.post(
+       await axios.post(
         `${API_BASE}/api/auth/avatar`,
         data,
         {

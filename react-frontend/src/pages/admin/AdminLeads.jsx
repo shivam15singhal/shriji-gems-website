@@ -26,14 +26,18 @@ const AdminLeads = () => {
 
   const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    fetchLeads();
-    fetchStats();
-  }, [page]);
+ useEffect(() => {
+  fetchLeads();
+  fetchStats();
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [page]);
 
   useEffect(() => {
-    filterLeads();
-  }, [search, statusFilter, leads]);
+  filterLeads();
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [search, statusFilter, leads]);
 
   /* FETCH LEADS */
 

@@ -20,8 +20,9 @@ function Checkout() {
   const token = localStorage.getItem("token")
 
   useEffect(() => {
-    loadCart();
-  }, []);
+  loadCart();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
   async function loadCart() {
     try {

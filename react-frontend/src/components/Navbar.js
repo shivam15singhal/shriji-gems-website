@@ -7,7 +7,6 @@ import "./Navbar.css";
 import {
   HiOutlineShoppingBag,
   HiOutlineUser,
-  HiOutlineMagnifyingGlass
 } from "react-icons/hi2";
 
 const API_BASE =

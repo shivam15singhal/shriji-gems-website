@@ -20,7 +20,7 @@ function AwardsSection() {
     }, 5000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [images.length]);
 
   const nextSlide = () => {
     setIndex((prev) => (prev + 1) % images.length);

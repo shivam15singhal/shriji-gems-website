@@ -42,8 +42,10 @@ function EditGem() {
 const [recommendedFor, setRecommendedFor] = useState("");
 
   useEffect(() => {
-    loadGem();
-  }, []);
+  loadGem();
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
   async function loadGem() {
 

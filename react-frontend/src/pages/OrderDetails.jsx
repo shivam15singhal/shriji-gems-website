@@ -18,7 +18,6 @@ function OrderDetails() {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [cancelling, setCancelling] = useState(false);
-  const [refundLoading, setRefundLoading] = useState(false);
   const [statusLoading, setStatusLoading] = useState(false);
 
   const [trackingData, setTrackingData] = useState({
