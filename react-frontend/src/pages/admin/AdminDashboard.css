@@ -1,0 +1,36 @@
+.dashboard-page{
+padding:30px;
+}
+
+.dashboard-title{
+margin-bottom:30px;
+}
+
+.dashboard-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.dashboard-card{
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 3px 12px rgba(0,0,0,0.08);
+cursor:pointer;
+transition:all 0.2s ease;
+}
+
+.dashboard-card:hover{
+transform:translateY(-4px);
+box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.dashboard-card h3{
+margin-bottom:10px;
+}
+
+.dashboard-card p{
+color:#666;
+font-size:14px;
+}

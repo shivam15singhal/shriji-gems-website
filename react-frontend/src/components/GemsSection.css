@@ -1,0 +1,307 @@
+/* ===============================
+   HOME PAGE – OLD CARD STYLE
+================================ */
+
+.home-gems-page .gems-section {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.home-gems-page .gems-section h2 {
+font-family:"Playfair Display", serif;
+
+  font-size:48px;
+
+  font-weight:700;
+
+  color:#1d1d1d;
+
+  line-height:1.15;
+
+  margin-bottom:50px;
+}
+.home-gems-page{
+  background:
+  linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #fff8fb 100%
+  );
+
+  padding:100px 0;
+}
+/* GRID */
+.home-gems-page .gems-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+/* CARD */
+.home-gems-page .gem-item {
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border: 1px solid rgba(0,0,0,0.03);
+  border-radius: 15px;
+  padding: 20px 16px 24px;
+  text-align: center;
+  cursor: pointer;
+ box-shadow:
+    0 8px 25px rgba(0,0,0,0.08),
+    0 1px 0 rgba(255,255,255,0.8) inset;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-gems-page .gem-item:hover{
+
+  transform:
+  translateY(-8px);
+
+  box-shadow:
+  0 20px 40px rgba(0,0,0,.08),
+  0 0 40px rgba(212,175,55,.15);
+}
+
+/* IMAGE */
+.home-gems-page .gem-item img {
+  width: auto;
+  max-width: 100%;
+  max-height: 150px;
+  display: block;
+  margin: 0 auto 10px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.15));
+}
+
+.home-gems-page .gem-item:hover img {
+  transform: scale(1.05);
+}
+
+/* TEXT */
+.home-gems-page .gem-text h3 {
+  margin: 6px 0;
+  font-size: 1em;
+  text-transform: uppercase;
+  color: #111;
+  letter-spacing: 1.2px;
+  font-weight: 500;
+}
+
+.home-gems-page .gem-text p {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 4px;
+}
+
+.gem-subtext {
+  text-align: center;
+  max-width: 680px;
+  margin: -30px auto 60px; /* pulls closer to heading */
+  font-size: 15.5px;
+  color: #6b6b6b;
+  line-height: 1.7;
+  letter-spacing: 0.3px;
+}
+
+/* ARROW */
+/* .home-gems-page .arrow {
+  font-size: 0.8em;
+  margin-left: 4px;
+} */
+
+/* =====================================
+   LARGE LAPTOPS
+===================================== */
+
+@media (max-width: 1200px){
+
+  .home-gems-page .gems-section{
+    max-width: 1100px;
+  }
+
+  .home-gems-page .gems-list{
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+
+  .home-gems-page .gems-section h2{
+    font-size: 42px;
+  }
+
+}
+
+/* =====================================
+   TABLETS
+===================================== */
+
+@media (max-width: 992px){
+
+  .home-gems-page{
+    padding: 80px 0;
+  }
+
+  .home-gems-page .gems-list{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .home-gems-page .gems-section h2{
+    font-size: 38px;
+  }
+
+  .gem-subtext{
+    margin: -15px auto 50px;
+    font-size: 15px;
+  }
+
+  .home-gems-page .gem-item img{
+    max-height: 135px;
+  }
+
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 768px){
+
+  .home-gems-page{
+    padding: 70px 0;
+  }
+
+  .home-gems-page .gems-section{
+    margin: 40px auto;
+    padding: 0 15px;
+  }
+
+  .home-gems-page .gems-section h2{
+    font-size: 32px;
+    line-height: 1.25;
+  }
+
+  .gem-subtext{
+    max-width: 100%;
+    margin: -10px auto 40px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .home-gems-page .gems-list{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .home-gems-page .gem-item{
+    padding: 18px 14px 24px;
+  }
+
+  .home-gems-page .gem-item img{
+    max-height: 120px;
+  }
+
+  .home-gems-page .gem-text h3{
+    font-size: 14px;
+  }
+
+  .home-gems-page .gem-text p{
+    font-size: 13px;
+  }
+
+}
+
+/* =====================================
+   SMALL PHONES
+===================================== */
+
+@media (max-width: 480px){
+
+  .home-gems-page{
+    padding: 60px 0;
+  }
+
+  .home-gems-page .gems-section h2{
+    font-size: 28px;
+  }
+
+  .gem-subtext{
+    font-size: 13px;
+    margin: 0 auto 35px;
+  }
+
+  .home-gems-page .gems-list{
+   grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .home-gems-page .gem-item{
+    width: 100%;
+  max-width: none;
+  margin: 0;
+  max-height: 220px;
+  }
+
+  .home-gems-page .gem-item img{
+      max-height: 50px;
+  }
+
+  .home-gems-page .gem-text h3{
+    font-size: 15px;
+  }
+
+  .home-gems-page .gem-text p{
+    font-size: 14px;
+  }
+
+  .home-gems-page .gem-item::after{
+    opacity: 1;
+    transform: translateX(-50%);
+    font-size: 13px;
+  }
+
+}
+
+/* =====================================
+   VERY SMALL DEVICES
+===================================== */
+
+@media (max-width: 360px){
+
+  .home-gems-page .gems-section h2{
+    font-size: 24px;
+  }
+
+  .home-gems-page .gem-item{
+    padding: 16px 12px 22px;
+  }
+
+  .home-gems-page .gem-item img{
+    max-height: 110px;
+  }
+
+}
+
+/* ===== HOVER CTA REVEAL ===== */
+
+.home-gems-page .gem-item {
+  position: relative;
+}
+
+.home-gems-page .gem-item::after {
+  content: "View Details →";
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  font-size: 0.85em;
+  color: #111;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.home-gems-page .gem-item:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

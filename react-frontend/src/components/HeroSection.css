@@ -1,0 +1,380 @@
+.luxury-hero-section {
+  min-height: 65vh;
+
+  display: flex;
+  align-items: center;
+
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+    135deg,
+    #fff8f4 0%,
+    #fffdfd 30%,
+    #fff3f7 70%,
+    #fff8f0 100%
+  );
+
+  padding: 50px 60px;
+}
+
+/* Golden glow */
+.luxury-hero-section::before {
+  content: "";
+
+  position: absolute;
+
+  width: 700px;
+  height: 700px;
+
+  right: -150px;
+  top: -120px;
+
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 55, 0.18) 0%,
+    rgba(255, 215, 0, 0.08) 30%,
+    transparent 70%
+  );
+
+  filter: blur(70px);
+
+  pointer-events: none;
+}
+
+.luxury-hero-container {
+  width: 100%;
+  max-width: 1450px;
+
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+
+  align-items: center;
+  gap: 70px;
+
+  position: relative;
+  z-index: 2;
+}
+
+.luxury-hero-content {
+  max-width: 550px;
+}
+
+.luxury-hero-tag {
+  display: inline-block;
+
+  background: linear-gradient(
+    135deg,
+    #fff7fb,
+    #fff1f6
+  );
+
+  color: #d35b8c;
+
+  border: 1px solid rgba(212, 175, 55, 0.25);
+
+  padding: 12px 22px;
+
+  border-radius: 999px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  letter-spacing: 0.4px;
+
+  margin-bottom: 28px;
+
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.08);
+}
+
+.luxury-hero-heading {
+  font-family: "Playfair Display", serif;
+
+  font-size: 58px;
+
+  line-height: 1.05;
+
+  font-weight: 700;
+
+  color: #1d1d1d;
+
+  letter-spacing: -1px;
+
+  margin-bottom: 25px;
+}
+
+.luxury-hero-description {
+  font-size: 18px;
+
+  color: #666;
+
+  line-height: 1.9;
+
+  margin-bottom: 35px;
+
+  max-width: 500px;
+}
+
+.luxury-hero-btn {
+  background: linear-gradient(
+    135deg,
+    #ff6d9d,
+    #e34f8b
+  );
+
+  color: white;
+
+  border: none;
+
+  border-radius: 16px;
+
+  padding: 17px 38px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.35s ease;
+
+  box-shadow: 0 15px 35px rgba(227, 79, 139, 0.25);
+}
+
+.luxury-hero-btn:hover {
+  transform: translateY(-4px);
+
+  box-shadow: 0 20px 45px rgba(227, 79, 139, 0.35);
+}
+
+.luxury-hero-trust {
+  margin-top: 35px;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 22px;
+}
+
+.luxury-hero-trust span {
+  color:#8c6b2f;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.luxury-hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+}
+
+/* Sparkle */
+.luxury-hero-image::after {
+  content: "✦";
+
+  position: absolute;
+
+  top: 10%;
+  right: 12%;
+
+  font-size: 30px;
+
+  color: rgba(212, 175, 55, 0.7);
+
+  animation: sparkle 3s infinite ease-in-out;
+}
+
+.luxury-hero-image img {
+  width: 100%;
+  max-width: 980px;
+
+  object-fit: contain;
+
+  filter: drop-shadow(
+    0 25px 40px rgba(0, 0, 0, 0.12)
+  );
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+/* TABLET */
+/* =====================================
+   LARGE TABLETS & SMALL LAPTOPS
+===================================== */
+
+@media (max-width: 1100px) {
+
+  .luxury-hero-container {
+    grid-template-columns: 1fr;
+
+    text-align: center;
+
+    gap: 40px;
+  }
+
+  .luxury-hero-content {
+    max-width: 100%;
+
+    margin: auto;
+  }
+
+  .luxury-hero-heading {
+    font-size: 56px;
+  }
+
+  .luxury-hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .luxury-hero-trust {
+    justify-content: center;
+  }
+
+  .luxury-hero-image img {
+    max-width: 700px;
+  }
+}
+
+/* =====================================
+   TABLETS
+===================================== */
+
+@media (max-width: 768px) {
+
+  .luxury-hero-section {
+    padding: 40px 20px;
+  }
+
+  .luxury-hero-section::before {
+
+    width: 350px;
+    height: 350px;
+
+    right: -100px;
+    top: -50px;
+  }
+
+  .luxury-hero-heading {
+    font-size: 36px;
+
+    line-height: 1.1;
+  }
+
+  .luxury-hero-description {
+    font-size: 16px;
+
+    max-width: 100%;
+  }
+
+  .luxury-hero-image {
+    margin-top: 25px;
+  }
+
+  .luxury-hero-image img {
+    max-width: 100%;
+  }
+
+  .luxury-hero-btn {
+    width: 100%;
+
+    max-width: 320px;
+  }
+
+  .luxury-hero-trust {
+    justify-content: center;
+
+    gap: 12px;
+  }
+
+  .luxury-hero-trust span {
+    font-size: 13px;
+  }
+}
+
+/* =====================================
+   MOBILE PHONES
+===================================== */
+
+@media (max-width: 480px) {
+
+  .luxury-hero-section {
+    padding: 30px 15px;
+  }
+
+  .luxury-hero-tag {
+    font-size: 12px;
+
+    padding: 10px 16px;
+  }
+
+  .luxury-hero-heading {
+    font-size: 30px;
+
+    line-height: 1.15;
+
+    letter-spacing: 0;
+  }
+
+  .luxury-hero-description {
+    font-size: 15px;
+
+    line-height: 1.7;
+  }
+
+  .luxury-hero-btn {
+    padding: 14px 24px;
+
+    font-size: 15px;
+  }
+
+  .luxury-hero-trust {
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 10px;
+  }
+
+  .luxury-hero-trust span {
+    font-size: 13px;
+  }
+
+  .luxury-hero-image::after {
+    font-size: 22px;
+  }
+}
+
+/* =====================================
+   VERY SMALL DEVICES
+===================================== */
+
+@media (max-width: 360px) {
+
+  .luxury-hero-heading {
+    font-size: 26px;
+  }
+
+  .luxury-hero-description {
+    font-size: 14px;
+  }
+
+  .luxury-hero-btn {
+    width: 100%;
+  }
+}

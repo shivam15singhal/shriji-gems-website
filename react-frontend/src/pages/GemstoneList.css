@@ -1,0 +1,415 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+.gemstone-section {
+  width: 98%;
+  margin: 50px auto;
+  padding: 0 20px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.gems-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+  margin-top: 50px;
+}
+
+/* FILTER BAR */
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(120deg, #fff, #f7f7f7);
+  padding: 25px 40px;
+  border-radius: 16px;
+  width: 92%;
+  margin: 40px auto;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+
+.alphabet-filter span {
+  margin: 4px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #555;
+}
+
+.alphabet-filter span:hover {
+  background: #eee;
+}
+
+.alphabet-filter span.active {
+  background: linear-gradient(135deg, #caa24d, #f5d17a);
+  color: #111;
+  font-weight: 600;
+}
+
+
+.color-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.color-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ddd;
+  transition: 0.25s;
+}
+
+.color-circle:hover {
+  transform: scale(1.15);
+}
+
+.color-circle.active-color {
+  border-color: gold;
+  box-shadow: 0 0 8px gold;
+}
+
+/* COLORS */
+.red { background: red; }
+.blue { background: blue; }
+.green { background: green; }
+.yellow { background: gold; }
+.white { background: white; border: 1px solid #ccc; }
+.black { background: black; }
+.pink { background: pink; }
+.purple { background: purple; }
+.brown { background: brown; }
+.orange { background: orange; }
+.grey { background: grey; }
+
+
+/* ===============================
+   PREMIUM GEM CARD STYLING
+================================ */
+
+.gem-card {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #fff7fa 100%
+  );
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.35s ease;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.gem-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120px 120px at top right,
+    rgba(255, 200, 220, 0.35),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: 0.35s;
+}
+
+.gem-card:hover::before {
+  opacity: 1;
+}
+
+.gem-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* ===============================
+   LINK RESET
+================================ */
+.gem-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+/* ===============================
+   IMAGE CONTAINER
+================================ */
+.gem-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fff, #ffeaf2);
+}
+
+.gem-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* ✅ NO STRETCHING */
+  padding: 18px;
+  transition: transform 0.45s ease;
+}
+
+.gem-card:hover .gem-image img {
+  transform: scale(1.12) rotate(-1deg);
+}
+
+/* soft shine */
+.gem-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.45),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.gem-card:hover .gem-image::after {
+  opacity: 1;
+}
+
+/* ===============================
+   CARD CONTENT
+================================ */
+.gem-info {
+  padding: 18px 20px 22px;
+  text-align: center;
+}
+
+.gem-info h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #2a2a2a;
+  letter-spacing: 0.4px;
+}
+
+.gem-info p {
+  font-family: "Poppins", sans-serif;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #6a6a6a;
+  opacity: 0.9;
+}
+
+/* ===============================
+   PREMIUM HOVER ACCENT
+================================ */
+.gem-card::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    #f3b7c8,
+    #e89bb1
+  );
+  transition: 0.35s ease;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.gem-card:hover::after {
+  width: 55%;
+}
+
+.gem-count{
+  color:#777;
+  margin-top:10px;
+  font-size:14px;
+}
+
+.gem-btn{
+  margin-top:12px;
+  border:none;
+  border-radius:30px;
+  padding:10px 18px;
+  background:linear-gradient(
+    135deg,
+    #ff8fb3,
+    #ffb8d0
+  );
+  color:white;
+  cursor:pointer;
+}
+
+ /* LARGE DESKTOP */
+@media (max-width:1400px){
+
+  .gems-list{
+    grid-template-columns:
+    repeat(4,1fr);
+  }
+
+}
+
+/* TABLET */
+@media (max-width:1024px){
+
+  .filter-bar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:25px;
+  }
+
+  .gems-list{
+    grid-template-columns:
+    repeat(3,1fr);
+  }
+
+}
+
+/* SMALL TABLET */
+@media (max-width:768px){
+
+  .gemstone-section{
+    width:100%;
+    padding:0 12px;
+  }
+
+  .gems-list{
+    grid-template-columns:
+    repeat(2,1fr);
+    gap:16px;
+  }
+
+  .filter-bar{
+    width:95%;
+    padding:20px;
+  }
+
+  .alphabet-filter{
+    display:flex;
+    flex-wrap:wrap;
+  }
+
+  .gem-info h3{
+    font-size:17px;
+  }
+
+  .gem-info p{
+    font-size:12px;
+  }
+
+}
+
+/* MOBILE */
+@media (max-width:480px){
+
+  .gemstone-section h1{
+    font-size:28px;
+  }
+
+  .gemstone-section h4{
+    font-size:14px;
+    line-height:1.6;
+  }
+
+  .gems-list{
+    grid-template-columns:1fr;
+  }
+
+  .filter-bar{
+    width:100%;
+    border-radius:12px;
+    padding:16px;
+  }
+
+  .alphabet-filter span{
+    padding:6px 8px;
+    font-size:12px;
+  }
+
+  .color-circle{
+    width:22px;
+    height:22px;
+  }
+
+  .gem-card{
+    border-radius:16px;
+  }
+
+  .gem-image{
+    aspect-ratio:1/1;
+  }
+
+}
+/* ==========================
+   SEARCH BAR
+========================== */
+
+.gem-search{
+  width:100%;
+  max-width:500px;
+
+  height:52px;
+
+  padding:0 22px;
+
+  margin:25px auto 35px;
+
+  display:block;
+
+  border:1px solid #f1dbe5;
+  border-radius:50px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #ffffff,
+    #fff8fb
+  );
+
+  font-size:15px;
+  color:#444;
+
+  outline:none;
+
+  transition:all .3s ease;
+
+  box-shadow:
+  0 8px 24px rgba(0,0,0,.05);
+}
+
+.gem-search::placeholder{
+  color:#999;
+}
+
+.gem-search:focus{
+  border-color:#ff8fb3;
+
+  box-shadow:
+  0 0 0 4px rgba(255,143,179,.15),
+  0 12px 30px rgba(255,143,179,.12);
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+  .gem-search{
+    max-width:100%;
+    height:48px;
+    font-size:14px;
+    margin:20px auto 25px;
+  }
+
+}

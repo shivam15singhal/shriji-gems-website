@@ -1,0 +1,574 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap');
+
+/* =========================
+   THEME VARIABLES
+========================= */
+:root {
+  --pink-soft: #fdecef;
+  --pink-accent: #f6b1c3;
+  --gold: #c9a24d;
+  --gold-light: #fff6e5;
+  --text-dark: #2b2b2b;
+  --text-muted: #7a7a7a;
+  --error: #d94a6a;
+  --success: #2f9e6f;
+}
+
+/* =========================
+   WRAPPER
+========================= */
+.gem-reco-wrapper {
+  width: 100%;
+  padding: 60px 20px 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom, #ffffff, #f9f6f7);
+}
+
+/* Heading */
+.GEMS_HEADING {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  color: var(--text-dark);
+  margin-bottom: 50px;
+}
+
+.recommend-subtext {
+  text-align: center;
+  max-width: 650px;
+  margin: -30px auto 50px;
+  font-size: 15px;
+  color: #6b6b6b;
+  line-height: 1.7;
+}
+
+.form-trust {
+  text-align: center;
+  font-size: 12.5px;
+  color: #888;
+  margin-top: 10px;
+}
+
+/* =========================
+   MAIN CARD
+========================= */
+.container {
+  display: flex;
+  gap: 44px;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 32px 40px;
+  max-width: 1250px;
+  width: 100%;
+  box-shadow: 0 25px 60px rgba(201,162,77,0.15);
+}
+
+/* =========================
+   FORM
+========================= */
+.form-section {
+  flex: 1;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-grid {
+  display: grid;
+   /* grid-template-columns: repeat(3, 1fr); */
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: 18px 32px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  grid-column: span 2;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 3px;
+}
+
+/* Inputs */
+.form-group input,
+.form-group select {
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid #e7e7e7;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  background: #ffffff;
+  transition: all 0.25s ease;
+}
+
+/* Focus (luxury glow) */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,162,77,0.15);
+  outline: none;
+}
+
+/* Error state */
+.form-group input.error,
+.form-group select.error {
+  border-color: #d94a6a;
+  box-shadow: 0 0 0 3px rgba(217, 74, 106, 0.12);
+}
+
+/* Inline error text */
+.field-error {
+  font-size: 12px;
+  color: #d94a6a;
+  margin-top: 4px;
+  font-weight: 500;
+}
+/* =========================
+   MESSAGES
+========================= */
+.error-msg,
+.success-msg {
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  margin-bottom: 22px;
+}
+
+.error-msg {
+  background: #fdecef;
+  color: var(--error);
+}
+
+.success-msg {
+  background: #e6f7f1;
+  color: var(--success);
+}
+
+/* =========================
+   SUBMIT BUTTON
+========================= */
+.submit-btn {
+  margin-top: 22px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 50px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #ffffff;
+  background: linear-gradient(135deg, #f6b1c3, var(--gold));
+  box-shadow: 0 12px 28px rgba(201,162,77,0.35);
+  transition: all 0.25s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(201,162,77,0.45);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================
+   INFO CARD
+========================= */
+.info-section {
+  flex: 1;
+  display: flex;
+}
+
+.info-section .card {
+  background: linear-gradient(to bottom, var(--pink-soft), #ffffff);
+  border-radius: 26px;
+  padding: 30px 32px;
+  text-align: center;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+}
+
+.info-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: var(--gold);
+}
+
+.info-section p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+.info-section h3 {
+  margin: 18px 0 22px;
+  font-size: 16px;
+  color: var(--text-dark);
+}
+
+.highlight {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* Gems */
+.gemstones img {
+  width: 145px;
+  margin: 10px;
+}
+
+/* Features */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.features div {
+  background: #ffffff;
+  padding: 8px 18px;
+  border-radius: 24px;
+  font-size: 13px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    padding: 28px 22px 34px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full-width {
+    grid-column: span 1;
+  }
+}
+
+/* =========================
+   SUCCESS POPUP
+========================= */
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.success-popup {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 36px 34px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(201,162,77,0.25);
+  animation: popupFade 0.3s ease;
+}
+
+.success-icon {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.success-popup h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: #2b2b2b;
+  margin-bottom: 10px;
+}
+
+.success-popup p {
+  font-size: 14px;
+  color: #7a7a7a;
+  margin-bottom: 24px;
+}
+
+.popup-btn {
+  padding: 12px 34px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: linear-gradient(135deg, #f6b1c3, #c9a24d);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(201,162,77,0.35);
+  transition: transform 0.2s ease;
+}
+
+.popup-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Animation */
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =====================================
+   LARGE LAPTOPS
+===================================== */
+
+@media (max-width: 1200px){
+
+  .container{
+    max-width: 1000px;
+    gap: 30px;
+  }
+
+  .gemstones img{
+    width: 120px;
+  }
+
+  .GEMS_HEADING{
+    font-size: 34px;
+  }
+
+}
+
+/* =====================================
+   TABLETS
+===================================== */
+
+@media (max-width: 992px){
+
+  .gem-reco-wrapper{
+    padding: 70px 15px;
+  }
+
+  .container{
+    flex-direction: column;
+    padding: 28px 24px;
+  }
+
+  .form-section,
+  .info-section{
+    width: 100%;
+  }
+
+  .form-grid{
+    grid-template-columns: repeat(2,1fr);
+    gap: 16px;
+  }
+
+  .form-group.full-width{
+    grid-column: span 2;
+  }
+
+  .GEMS_HEADING{
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .recommend-subtext{
+    margin: -20px auto 40px;
+  }
+
+  .info-section .card{
+    width: 100%;
+  }
+
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+/* @media (max-width: 768px){
+
+  .gem-reco-wrapper{
+    padding: 60px 15px;
+  }
+
+  .GEMS_HEADING{
+    font-size: 28px;
+    line-height: 1.3;
+  }
+
+  .recommend-subtext{
+    font-size: 14px;
+    margin: -15px auto 35px;
+  }
+
+  .container{
+    padding: 22px 18px;
+    border-radius: 22px;
+  }
+
+  .form-grid{
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .form-group.full-width{
+    grid-column: span 1;
+  }
+
+  .form-group label{
+    font-size: 12px;
+  }
+
+  .form-group input,
+  .form-group select{
+    font-size: 14px;
+  }
+
+  .info-section .card{
+    padding: 24px 20px;
+  }
+
+  .info-section h2{
+    font-size: 24px;
+  }
+
+  .info-section h3{
+    font-size: 15px;
+  }
+
+  .gemstones{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  .gemstones img{
+    width: 95px;
+    margin: 6px;
+  }
+
+  .features{
+    gap: 8px;
+  }
+
+  .features div{
+    font-size: 12px;
+    padding: 7px 14px;
+  }
+
+  .submit-btn{
+    padding: 13px;
+    font-size: 14px;
+  }
+
+} */
+@media (max-width: 768px){
+
+  .form-grid{
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+  }
+
+  .form-group.full-width{
+    grid-column: span 2;
+  }
+
+  .form-group label{
+    font-size: 11px;
+  }
+
+  .form-group input,
+  .form-group select{
+    padding: 10px;
+    font-size: 13px;
+  }
+}
+/* =====================================
+   SMALL PHONES
+===================================== */
+
+@media (max-width: 480px){
+
+  .gem-reco-wrapper{
+    padding: 50px 12px;
+  }
+
+  .GEMS_HEADING{
+    font-size: 24px;
+  }
+
+  .recommend-subtext{
+    font-size: 13px;
+  }
+
+  .container{
+    padding: 18px 14px;
+    border-radius: 18px;
+  }
+
+  .form-group input,
+  .form-group select{
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .gemstones img{
+    width: 80px;
+  }
+
+  .info-section h2{
+    font-size: 22px;
+  }
+
+  .info-section h3{
+    font-size: 14px;
+  }
+
+  .features div{
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+
+  .form-trust{
+    font-size: 11px;
+  }
+
+}
+
+/* =====================================
+   VERY SMALL DEVICES
+===================================== */
+
+@media (max-width: 360px){
+
+  .GEMS_HEADING{
+    font-size: 22px;
+  }
+
+  .gemstones img{
+    width: 70px;
+  }
+
+  .features div{
+    width: 100%;
+    text-align: center;
+  }
+
+  .submit-btn{
+    font-size: 13px;
+  }
+
+}

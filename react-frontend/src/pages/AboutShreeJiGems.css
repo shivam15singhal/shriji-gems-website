@@ -1,0 +1,605 @@
+/* ===================================
+   ABOUT Shri Ji GEMS PAGE
+=================================== */
+
+.about-gems-page{
+  width:100%;
+  overflow:hidden;
+
+  background:
+  linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #fff8fb 100%
+  );
+}
+
+/* ===================================
+   COMMON
+=================================== */
+
+.section-heading{
+  text-align:center;
+  margin-bottom:60px;
+}
+
+.section-heading h2{
+  font-family:"Playfair Display", serif;
+
+  font-size:48px;
+  font-weight:700;
+
+  color:#1d1d1d;
+
+  margin-bottom:18px;
+}
+
+.section-heading p{
+  max-width:760px;
+
+  margin:auto;
+
+  color:#666;
+
+  line-height:1.8;
+  font-size:16px;
+}
+
+.section-heading h2::after{
+  content:"";
+
+  display:block;
+
+  width:80px;
+  height:3px;
+
+  margin:18px auto 0;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+    90deg,
+    #d4af37,
+    #ff7eb3
+  );
+}
+
+/* ===================================
+   HERO
+=================================== */
+
+.about-gems-hero{
+  padding:120px 20px;
+
+  position:relative;
+
+  text-align:center;
+
+  overflow:hidden;
+}
+
+.about-gems-hero::before{
+  content:"";
+
+  position:absolute;
+
+  width:700px;
+  height:700px;
+
+  top:-250px;
+  right:-200px;
+
+  border-radius:50%;
+
+  background:
+  radial-gradient(
+    circle,
+    rgba(255,126,179,.18),
+    transparent 70%
+  );
+
+  filter:blur(80px);
+}
+
+.about-gems-content{
+  max-width:950px;
+  margin:auto;
+
+  position:relative;
+  z-index:2;
+}
+
+.about-badge{
+  display:inline-block;
+
+  padding:12px 24px;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #fff0f6,
+    #fff7fa
+  );
+
+  color:#e45895;
+
+  font-size:14px;
+  font-weight:600;
+
+  margin-bottom:28px;
+
+  border:
+  1px solid rgba(255,126,179,.15);
+}
+
+.about-gems-content h1{
+  font-family:"Playfair Display", serif;
+
+  font-size:68px;
+
+  line-height:1.1;
+
+  color:#1d1d1d;
+
+  margin-bottom:25px;
+}
+
+.about-gems-content h1 span{
+  color:#e45895;
+}
+
+.about-gems-content p{
+  max-width:760px;
+
+  margin:auto;
+
+  font-size:18px;
+  line-height:1.9;
+
+  color:#666;
+}
+
+/* ===================================
+   STORY
+=================================== */
+
+.story-section{
+  max-width:1200px;
+
+  margin:auto;
+
+  padding:100px 20px;
+}
+
+.story-card{
+  background:white;
+
+  padding:55px;
+
+  border-radius:30px;
+
+  box-shadow:
+  0 20px 50px rgba(0,0,0,.05);
+
+  border:
+  1px solid rgba(255,126,179,.08);
+}
+
+.story-card p{
+  font-size:17px;
+
+  line-height:2;
+
+  color:#666;
+
+  margin-bottom:22px;
+}
+
+.story-card p:last-child{
+  margin-bottom:0;
+}
+
+/* ===================================
+   STATS
+=================================== */
+
+.stats-section{
+  max-width:1300px;
+
+  margin:auto;
+
+  padding:0 20px 100px;
+
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+
+  gap:25px;
+}
+
+.stat-card{
+  background:white;
+
+  padding:35px 25px;
+
+  text-align:center;
+
+  border-radius:24px;
+
+  box-shadow:
+  0 15px 40px rgba(0,0,0,.05);
+
+  transition:.35s;
+}
+
+.stat-card:hover{
+  transform:translateY(-8px);
+
+  box-shadow:
+  0 25px 60px rgba(255,126,179,.12);
+}
+
+.stat-card h3{
+  font-size:42px;
+
+  color:#e45895;
+
+  margin-bottom:10px;
+}
+
+.stat-card span{
+  color:#666;
+}
+
+/* ===================================
+   AUTHENTICITY
+=================================== */
+
+.authenticity-section{
+  padding:100px 20px;
+
+  background:
+  linear-gradient(
+    180deg,
+    #fff8fb,
+    #ffffff
+  );
+}
+
+.auth-grid{
+  max-width:1300px;
+
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+
+  gap:22px;
+}
+
+.auth-card{
+  background:white;
+
+  border-radius:24px;
+
+  padding:35px 20px;
+
+  text-align:center;
+
+  box-shadow:
+  0 12px 35px rgba(0,0,0,.05);
+
+  transition:.35s;
+}
+
+.auth-card:hover{
+  transform:translateY(-8px);
+}
+
+.auth-icon{
+  width:60px;
+  height:60px;
+
+  margin:0 auto 18px;
+
+  border-radius:50%;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:
+  linear-gradient(
+    135deg,
+    #ff9ac2,
+    #ffd6e8
+  );
+
+  color:white;
+
+  font-size:24px;
+}
+
+.auth-card h3{
+  font-size:17px;
+  color:#333;
+}
+
+/* ===================================
+   TRUST
+=================================== */
+
+.trust-section{
+  max-width:1300px;
+
+  margin:auto;
+
+  padding:100px 20px;
+}
+
+.trust-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+
+  gap:25px;
+}
+
+.trust-card{
+  background:white;
+
+  border-radius:28px;
+
+  padding:35px 28px;
+
+  box-shadow:
+  0 15px 40px rgba(0,0,0,.05);
+
+  transition:.35s;
+}
+
+.trust-card:hover{
+  transform:translateY(-8px);
+
+  box-shadow:
+  0 25px 60px rgba(255,126,179,.12);
+}
+
+.trust-card h3{
+  color:#1d1d1d;
+
+  margin-bottom:14px;
+}
+
+.trust-card p{
+  color:#666;
+
+  line-height:1.8;
+}
+
+/* ===================================
+   DIFFERENCE
+=================================== */
+
+.difference-section{
+  padding:100px 20px;
+
+  background:
+  linear-gradient(
+    180deg,
+    #fff8fb,
+    #ffffff
+  );
+}
+
+.difference-grid{
+  max-width:1200px;
+
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+  gap:28px;
+}
+
+.difference-card{
+  background:white;
+
+  border-radius:30px;
+
+  padding:40px 30px;
+
+  text-align:center;
+
+  box-shadow:
+  0 15px 40px rgba(0,0,0,.05);
+}
+
+.difference-icon{
+  font-size:42px;
+
+  margin-bottom:20px;
+}
+
+.difference-card h3{
+  margin-bottom:15px;
+
+  color:#1d1d1d;
+}
+
+.difference-card p{
+  color:#666;
+  line-height:1.8;
+}
+
+/* ===================================
+   VISION
+=================================== */
+
+.vision-section{
+  padding:100px 20px 40px;
+}
+
+.vision-card{
+  max-width:1000px;
+
+  margin:auto;
+
+  background:white;
+
+  padding:60px;
+
+  border-radius:32px;
+
+  text-align:center;
+
+  box-shadow:
+  0 20px 50px rgba(0,0,0,.05);
+}
+
+.vision-card h2{
+  font-family:"Playfair Display", serif;
+
+  font-size:44px;
+
+  margin-bottom:20px;
+}
+
+.vision-card p{
+  color:#666;
+
+  line-height:1.9;
+
+  font-size:17px;
+}
+
+/* ===================================
+   PROMISE
+=================================== */
+
+.promise-section{
+  padding:40px 20px 120px;
+}
+
+.promise-card{
+  max-width:1000px;
+
+  margin:auto;
+
+  background:
+  linear-gradient(
+    135deg,
+    #fff5f9,
+    #ffffff
+  );
+
+  padding:60px;
+
+  border-radius:32px;
+
+  text-align:center;
+
+  box-shadow:
+  0 20px 50px rgba(255,126,179,.08);
+}
+
+.promise-card h2{
+  font-family:"Playfair Display", serif;
+
+  font-size:44px;
+
+  margin-bottom:25px;
+}
+
+.promise-card p{
+  color:#666;
+
+  line-height:1.9;
+
+  font-size:17px;
+
+  margin-bottom:15px;
+}
+
+/* ===================================
+   TABLET
+=================================== */
+
+@media (max-width:1100px){
+
+  .stats-section{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .auth-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .trust-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .difference-grid{
+    grid-template-columns:1fr;
+  }
+
+  .about-gems-content h1{
+    font-size:56px;
+  }
+}
+
+/* ===================================
+   MOBILE
+=================================== */
+
+@media (max-width:768px){
+
+  .about-gems-hero{
+    padding:90px 20px;
+  }
+
+  .about-gems-content h1{
+    font-size:42px;
+  }
+
+  .about-gems-content p{
+    font-size:16px;
+  }
+
+  .section-heading h2{
+    font-size:34px;
+  }
+
+  .story-card{
+    padding:30px 24px;
+  }
+
+  .stats-section{
+    grid-template-columns:1fr;
+  }
+
+  .auth-grid{
+    grid-template-columns:1fr;
+  }
+
+  .trust-grid{
+    grid-template-columns:1fr;
+  }
+
+  .vision-card,
+  .promise-card{
+    padding:35px 24px;
+  }
+
+  .vision-card h2,
+  .promise-card h2{
+    font-size:32px;
+  }
+
+  .vision-card p,
+  .promise-card p{
+    font-size:15px;
+  }
+}   

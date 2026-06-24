@@ -1,0 +1,449 @@
+/* ================= ROOT SECTION ================= */
+
+.video-section {
+  padding: 90px 0;
+  text-align: center;
+  overflow: hidden;
+  background:
+linear-gradient(
+180deg,
+#fff8fb 0%,
+#ffffff 50%,
+#fff8fb 100%
+);
+}
+
+/* ================= HEADING ================= */
+
+.rev_heading {
+  
+  margin-bottom: 60px;
+ font-family:"Playfair Display", serif;
+  font-size:48px;
+  font-weight:700;
+  color: #1c1c1c;
+  position: relative;
+}
+
+.rev_heading::after {
+  content: "";
+  width: 90px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff8fb3, #ffc1d6);
+  display: block;
+  margin: 18px auto 0;
+  border-radius: 2px;
+}
+
+.reviews-subtext {
+  text-align: center;
+  max-width: 760px;
+  margin: -15px auto 55px;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: #6b6b6b;
+  letter-spacing: 0.3px;
+}
+
+/* ================= SLIDER ================= */
+
+.slider-wrapper {
+  position: relative;
+  max-width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.slider-container {
+  overflow: hidden;
+  width: 100%;
+  padding: 20px 0 35px;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
+.slider-track {
+  display: flex;
+  gap: 25px;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ================= CARD ================= */
+
+.review-card {
+  min-width: 290px;
+  height: 390px;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: #000;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.28);
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+}
+
+.review-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.12),
+    rgba(0, 0, 0, 0.72)
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+.review-card:hover {
+ transform:translateY(-10px) scale(1.03);
+
+ box-shadow:
+ 0 30px 80px rgba(0,0,0,.25),
+ 0 0 30px rgba(255,105,180,.18);
+}
+
+/* Active card */
+.review-card.playing {
+  box-shadow:
+    0 50px 140px rgba(0, 0, 0, 0.6),
+    0 0 0 2px rgba(255, 143, 179, 0.35);
+}
+
+/* ================= VIDEO ================= */
+
+.review-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* ================= PLAY ICON ================= */
+
+.play-icon {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #ff6f9f;
+  font-size: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  box-shadow: 0 12px 30px rgba(255, 182, 200, 0.6);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.review-card:hover .play-icon {
+  transform: scale(1.12);
+}
+
+/* Hide play icon when playing */
+.review-card.playing .play-icon {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ================= TEXT ================= */
+
+.review-info {
+  position: absolute;
+  bottom: 22px;
+  left: 22px;
+  right: 22px;
+  color: #fff;
+  z-index: 4;
+}
+
+.review-info h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.review-info p {
+  margin-top: 6px;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* ================= CUSTOM CONTROLS ================= */
+
+.custom-controls {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Mute / Unmute */
+.mute-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(255, 182, 200, 0.5);
+}
+
+/* Progress Bar */
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff8fb3, #ffc1d6);
+}
+
+/* Time */
+.time {
+  font-size: 12px;
+  color: #fff;
+  min-width: 70px;
+  text-align: right;
+  font-weight: 500;
+}
+
+/* ================= NAV BUTTONS ================= */
+
+.nav-btn {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 20;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  transition: background 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: #fff;
+}
+
+.nav-btn.left {
+  left: -18px;
+}
+
+.nav-btn.right {
+  right: -18px;
+}
+
+/* ================= DOTS ================= */
+
+.dots {
+  margin-top: 28px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  background: #cfcfcf;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 6px;
+}
+
+.dot.active {
+  background: #ff6f9f;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* =========================
+   LARGE LAPTOPS
+========================= */
+
+@media (max-width: 1400px) {
+
+  .slider-wrapper{
+    padding:0 20px;
+  }
+
+  .review-card{
+    min-width:280px;
+  }
+
+}
+
+/* =========================
+   TABLETS
+========================= */
+
+@media (max-width: 1024px) {
+
+  .video-section{
+    padding:80px 20px;
+  }
+
+  .rev_heading{
+    font-size:38px;
+  }
+
+  .reviews-subtext{
+    max-width:650px;
+    font-size:15px;
+  }
+
+  .review-card{
+    min-width:260px;
+    height:360px;
+  }
+
+  .slider-track{
+    gap:18px;
+  }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .video-section{
+    padding:70px 15px;
+  }
+
+  .rev_heading{
+    font-size:32px;
+    line-height:1.2;
+    margin-bottom:40px;
+  }
+
+  .reviews-subtext{
+    font-size:14px;
+    line-height:1.7;
+    margin:-10px auto 40px;
+    padding:0 10px;
+  }
+
+  .slider-container{
+    mask-image:none;
+  }
+
+  .slider-track{
+    gap:14px;
+  }
+
+  .review-card{
+    min-width:230px;
+    height:320px;
+    border-radius:20px;
+  }
+
+  .play-icon{
+    width:58px;
+    height:58px;
+    font-size:22px;
+  }
+
+  .review-info h3{
+    font-size:16px;
+  }
+
+  .review-info p{
+    font-size:12px;
+  }
+
+  .nav-btn{
+    display:none;
+  }
+
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+  .video-section{
+    padding:60px 10px;
+  }
+
+  .rev_heading{
+    font-size:28px;
+  }
+
+  .review-card{
+    min-width:210px;
+    height:290px;
+  }
+
+  .play-icon{
+    width:52px;
+    height:52px;
+    font-size:20px;
+  }
+
+  .custom-controls{
+    gap:6px;
+  }
+
+  .mute-btn{
+    width:32px;
+    height:32px;
+    font-size:14px;
+  }
+
+  .time{
+    font-size:11px;
+    min-width:60px;
+  }
+
+}
+
+/* =========================
+   EXTRA SMALL DEVICES
+========================= */
+
+@media (max-width: 360px) {
+
+  .rev_heading{
+    font-size:24px;
+  }
+
+  .review-card{
+    min-width:190px;
+    height:270px;
+  }
+
+  .review-info{
+    left:15px;
+    right:15px;
+    bottom:15px;
+  }
+
+}
