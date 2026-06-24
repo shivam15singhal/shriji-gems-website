@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./GemRecommendation.css";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function GemRecommendation() {
   const [formData, setFormData] = useState({
@@ -82,7 +84,7 @@ function GemRecommendation() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/gem-recommendation", {
+     const res = await fetch(`${API_BASE}/api/gem-recommendation`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RelatedProducts.css";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function RelatedProducts({ gemId }) {
   const [products, setProducts] = useState([]);
@@ -47,9 +49,9 @@ function RelatedProducts({ gemId }) {
           >
             <div className="related-image-wrapper">
               <img
-                src={`http://localhost:5000${item.image}`}
-                alt={item.name}
-              />
+  src={`${API_BASE}${item.image}`}
+  alt={item.name}
+/>
             </div>
 
             <h4>{item.name}</h4>

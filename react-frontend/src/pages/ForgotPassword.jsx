@@ -2,7 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import "./ForgotPassword.css";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");

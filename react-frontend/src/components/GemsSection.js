@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./GemsSection.css";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function GemsSection() {
 
@@ -58,10 +60,10 @@ function GemsSection() {
                 onClick={() => openGem(gem._id)}
               >
 
-                <img
-                  src={`http://localhost:5000${gem.image}`}
-                  alt={gem.name}
-                />
+               <img
+  src={`${API_BASE}${gem.image}`}
+  alt={gem.name}
+/>
 
                 <div className="gem-text">
 

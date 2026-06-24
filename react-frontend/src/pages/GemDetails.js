@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "./GemDetails.css";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function GemDetails() {
 
@@ -66,7 +68,7 @@ function GemDetails() {
         <div className="gem-hero-left">
           <div className="gem-image-wrap">
             <img
-              src={`http://localhost:5000${gem?.image}`}
+            src={`${API_BASE}${gem?.image}`}
               alt={gem?.name}
             />
           </div>
@@ -195,7 +197,7 @@ function GemDetails() {
 
       <div className="quality-image">
         <img
-          src={`http://localhost:5000${highImg}`}
+      src={`${API_BASE}${highImg}`}
           alt="High Quality"
         />
       </div>
@@ -231,7 +233,7 @@ function GemDetails() {
 
       <div className="quality-image">
         <img
-          src={`http://localhost:5000${mediumImg}`}
+         src={`${API_BASE}${mediumImg}`}
           alt="Medium Quality"
         />
       </div>
@@ -266,7 +268,7 @@ function GemDetails() {
 
       <div className="quality-image">
         <img
-          src={`http://localhost:5000${lowImg}`}
+          src={`${API_BASE}${lowImg}`}
           alt="Low Quality"
         />
       </div>
