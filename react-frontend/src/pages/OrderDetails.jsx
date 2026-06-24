@@ -7,7 +7,8 @@ import { AuthContext } from "../context/AuthContext";
 import "./OrderDetails.css";
 import Swal from "sweetalert2";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function OrderDetails() {
   const { orderId } = useParams();
@@ -352,8 +353,8 @@ function OrderDetails() {
           <div className="order-items">
             {order.items.map((item, i) => (
               <div className="order-item-card" key={i}>
-              <img
-  src={`http://localhost:5000${item.image}`}
+             <img
+  src={`${API_BASE}${item.image}`}
   alt={item.name}
 />
 

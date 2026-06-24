@@ -5,6 +5,8 @@ import "./GemQualityPage.css";
 import { addToCart as addToCartAPI } from "../services/cartService";
 import RelatedProducts from "../components/RelatedProducts";
 import Swal from "sweetalert2";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function GemQualityPage() {
 
@@ -167,7 +169,7 @@ const prevImage = () => {
             {data.images.map((img, i) => (
               <img
                 key={i}
-                src={`http://localhost:5000${img}`}
+                src={`${API_BASE}${img}`}
                 onClick={() => {
                   setCurrentIndex(i);
                   setShowVideo(false);
@@ -184,7 +186,7 @@ const prevImage = () => {
 
             {showVideo && data.video ? (
               <video
-                src={`http://localhost:5000${data.video}`}
+               src={`${API_BASE}${data.video}`}
                 controls
                 muted
                  autoPlay
@@ -193,7 +195,7 @@ const prevImage = () => {
               />
             ) : (
               <img
-                src={`http://localhost:5000${data.images[currentIndex]}`}
+              src={`${API_BASE}${data.images[currentIndex]}`}
                 alt=""
                 className="main-media"
               />

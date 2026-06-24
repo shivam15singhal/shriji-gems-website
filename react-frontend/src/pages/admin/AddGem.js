@@ -5,7 +5,8 @@ import AdminLayout from "../../components/admin/AdminLayout";
 import "./AddGem.css";
 import Swal from "sweetalert2";
 
-const API = "http://localhost:5000/api/admin";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function AddGem() {
 
@@ -178,7 +179,7 @@ navigate("/admin/gems");
 
             {image && (
               <div className="preview-row">
-                <img src={`http://localhost:5000${image}`} alt="" />
+                <img src={`${API_BASE}${image}`} alt="" />
               </div>
             )}
           </div>
@@ -205,13 +206,13 @@ navigate("/admin/gems");
 
             <div className="preview-row">
               {highImages.map((img, i) => (
-                <img key={i} src={`http://localhost:5000${img}`} alt="" />
+               <img key={i} src={`${API_BASE}${img}`} alt="" />
               ))}
             </div>
 
             {highVideo && (
               <div className="preview-video">
-                <video src={`http://localhost:5000${highVideo}`} controls />
+                <video src={`${API_BASE}${highVideo}`} controls />
               </div>
             )}
           </div>
@@ -229,13 +230,13 @@ navigate("/admin/gems");
 
             <div className="preview-row">
               {mediumImages.map((img, i) => (
-                <img key={i} src={`http://localhost:5000${img}`} alt="" />
+               <img key={i} src={`${API_BASE}${img}`} alt="" />
               ))}
             </div>
 
             {mediumVideo && (
               <div className="preview-video">
-                <video src={`http://localhost:5000${mediumVideo}`} controls />
+                <video src={`${API_BASE}${mediumVideo}`} controls />
               </div>
             )}
           </div>
@@ -253,13 +254,13 @@ navigate("/admin/gems");
 
             <div className="preview-row">
               {lowImages.map((img, i) => (
-                <img key={i} src={`http://localhost:5000${img}`} alt="" />
+                <img key={i} src={`${API_BASE}${img}`} alt="" />
               ))}
             </div>
 
             {lowVideo && (
               <div className="preview-video">
-                <video src={`http://localhost:5000${lowVideo}`} controls />
+                <video src={`${API_BASE}${lowVideo}`} controls />
               </div>
             )}
           </div>

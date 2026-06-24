@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import AdminLayout from "../../components/admin/AdminLayout";
-
-const API = "http://localhost:5000/api/admin";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API = `${API_BASE}/api/admin`;
 
 function EditGem() {
 
@@ -236,7 +237,7 @@ setRecommendedFor(
           <input type="file" accept="video/*" onChange={async (e) => setHighVideo(await uploadImage(e.target.files[0]))} />
 
           {highVideo && (
-            <video src={`http://localhost:5000${highVideo}`} width="120" controls />
+            <video src={`${API_BASE}${highVideo}`} width="120" controls />
           )}
 
           <br /><br />
@@ -252,7 +253,7 @@ setRecommendedFor(
           <input type="file" accept="video/*" onChange={async (e) => setMediumVideo(await uploadImage(e.target.files[0]))} />
 
           {mediumVideo && (
-            <video src={`http://localhost:5000${mediumVideo}`} width="120" controls />
+            <video src={`${API_BASE}${mediumVideo}`} width="120" controls />
           )}
 
           <br /><br />
@@ -268,7 +269,7 @@ setRecommendedFor(
           <input type="file" accept="video/*" onChange={async (e) => setLowVideo(await uploadImage(e.target.files[0]))} />
 
           {lowVideo && (
-            <video src={`http://localhost:5000${lowVideo}`} width="120" controls />
+            <video src={`${API_BASE}${lowVideo}`} width="120" controls />
           )}
 
           <br /><br />

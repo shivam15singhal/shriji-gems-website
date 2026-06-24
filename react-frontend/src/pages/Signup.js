@@ -6,6 +6,8 @@ import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function Signup() {
   const navigate = useNavigate();
@@ -59,12 +61,12 @@ function Signup() {
     credentialResponse
   ) => {
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/google",
-        {
-          token: credentialResponse.credential
-        }
-      );
+     const res = await axios.post(
+  `${API_BASE}/api/auth/google`,
+  {
+    token: credentialResponse.credential
+  }
+);
 
       if (res.data.success) {
         localStorage.setItem(

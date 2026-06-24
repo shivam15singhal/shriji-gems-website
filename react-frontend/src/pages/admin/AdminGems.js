@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AdminLayout from "../../components/admin/AdminLayout";
-
-const API = "http://localhost:5000/api/admin";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API = `${API_BASE}/api/admin`;
 
 function AdminGems() {
 

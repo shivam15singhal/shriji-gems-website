@@ -7,6 +7,8 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function Login() {
   const navigate = useNavigate();
@@ -26,11 +28,11 @@ function Login() {
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/google",
-        {
-          token: credentialResponse.credential
-        }
-      );
+  `${API_BASE}/api/auth/google`,
+  {
+    token: credentialResponse.credential
+  }
+);
 
      if (res.data.success) {
 

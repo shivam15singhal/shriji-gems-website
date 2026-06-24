@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./AdminLeads.css";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 const AdminLeads = () => {
 
@@ -38,7 +40,7 @@ const AdminLeads = () => {
   const fetchLeads = async () => {
 
     const res = await fetch(
-      `http://localhost:5000/api/admin/leads?page=${page}&limit=${limit}`,
+  `${API_BASE}/api/admin/leads?page=${page}&limit=${limit}`,
       {
         headers: { Authorization: `Bearer ${token}` }
       }
@@ -55,7 +57,7 @@ const AdminLeads = () => {
   const fetchStats = async () => {
 
     const res = await fetch(
-      "http://localhost:5000/api/admin/stats",
+      `${API_BASE}/api/admin/stats`,
       {
         headers: { Authorization: `Bearer ${token}` }
       }
@@ -71,7 +73,7 @@ const AdminLeads = () => {
   const updateStatus = async (id, status) => {
 
     await fetch(
-      `http://localhost:5000/api/admin/leads/${id}/status`,
+      `${API_BASE}/api/admin/leads/${id}/status`,
       {
         method: "PATCH",
         headers: {
@@ -93,7 +95,7 @@ const AdminLeads = () => {
     if (!window.confirm("Delete this lead?")) return;
 
     await fetch(
-      `http://localhost:5000/api/admin/leads/${id}`,
+      `${API_BASE}/api/admin/leads/${id}`,
       {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }

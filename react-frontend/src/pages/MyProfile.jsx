@@ -6,7 +6,8 @@ import Navbar from "../components/Navbar";
 import "./MyProfile.css";
 import Swal from "sweetalert2";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function MyProfile() {
   const { user, setUser, loading } = useContext(AuthContext);

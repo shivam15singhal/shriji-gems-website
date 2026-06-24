@@ -5,6 +5,7 @@ import "./GemVariantDetails.css";
 import { addToCart as addToCartAPI } from "../services/cartService";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+const API_BASE =process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function GemVariantDetails() {
   const { gemId, variantIndex } = useParams();
@@ -111,7 +112,7 @@ console.log("VARIANT 👉", variant);
 
             <img
               className="detail-main-img"
-              src={`http://localhost:5000${images[currentIndex]}`}
+              src={`${API_BASE}${images[currentIndex]}`}
               alt={gem.name}
             />
 
@@ -129,7 +130,7 @@ console.log("VARIANT 👉", variant);
             {images.map((img, i) => (
               <img
                 key={i}
-                src={`http://localhost:5000${img}`}
+                src={`${API_BASE}${img}`}
                 alt=""
                 className={i === currentIndex ? "active" : ""}
                 onClick={() => setCurrentIndex(i)}
