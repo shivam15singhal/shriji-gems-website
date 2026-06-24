@@ -1,5 +1,5 @@
 const GemLead = require("../models/GemLead");
-const { sendGemLeadEmail } = require("../utils/sendemail");
+const { sendGemLeadEmail } = require("../utils/sendEmail");
 
 exports.submitGemForm = async (req, res) => {
   try {
