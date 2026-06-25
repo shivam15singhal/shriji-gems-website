@@ -226,6 +226,93 @@ setRecommendedFor(
 
           <input value={color} onChange={(e) => setColor(e.target.value)} placeholder="Color" />
           <br /><br />
+{/* ================= MAIN IMAGE ================= */}
+
+<h3>Main Image</h3>
+
+<input
+  type="file"
+  onChange={async (e) => {
+    setImage(await uploadImage(e.target.files[0]));
+  }}
+/>
+
+<br />
+
+{image && (
+  <img
+    src={image}
+    alt="Main"
+    width="180"
+    style={{ marginTop: 10, borderRadius: 8 }}
+  />
+)}
+
+<br /><br />
+
+{/* ================= QUALITY CARD IMAGES ================= */}
+
+<h3>Quality Card Images</h3>
+
+<p>High Quality Card</p>
+
+<input
+  type="file"
+  onChange={async (e) => {
+    setHighQualityImage(await uploadImage(e.target.files[0]));
+  }}
+/>
+
+{highQualityImage && (
+  <img
+    src={highQualityImage}
+    alt=""
+    width="140"
+    style={{ marginTop: 10 }}
+  />
+)}
+
+<br /><br />
+
+<p>Medium Quality Card</p>
+
+<input
+  type="file"
+  onChange={async (e) => {
+    setMediumQualityImage(await uploadImage(e.target.files[0]));
+  }}
+/>
+
+{mediumQualityImage && (
+  <img
+    src={mediumQualityImage}
+    alt=""
+    width="140"
+    style={{ marginTop: 10 }}
+  />
+)}
+
+<br /><br />
+
+<p>Low Quality Card</p>
+
+<input
+  type="file"
+  onChange={async (e) => {
+    setLowQualityImage(await uploadImage(e.target.files[0]));
+  }}
+/>
+
+{lowQualityImage && (
+  <img
+    src={lowQualityImage}
+    alt=""
+    width="140"
+    style={{ marginTop: 10 }}
+  />
+)}
+
+<br /><br />
 
           {/* HIGH */}
           <h3>High Quality</h3>
@@ -233,7 +320,32 @@ setRecommendedFor(
           <input value={highPrice} onChange={(e) => setHighPrice(e.target.value)} />
           <textarea value={highDesc} onChange={(e) => setHighDesc(e.target.value)} />
 
-          <input type="file" multiple onChange={(e) => uploadMultiple(e.target.files, setHighImages)} />
+         <input
+  type="file"
+  multiple
+  onChange={(e) =>
+    uploadMultiple(e.target.files, setHighImages)
+  }
+/>
+
+<div
+  style={{
+    display: "flex",
+    gap: 10,
+    flexWrap: "wrap",
+    marginTop: 10
+  }}
+>
+  {highImages.map((img, i) => (
+    <img
+      key={i}
+      src={img}
+      alt=""
+      width="100"
+      style={{ borderRadius: 8 }}
+    />
+  ))}
+</div>
 
           {/* 🎥 VIDEO */}
           <input type="file" accept="video/*" onChange={async (e) => setHighVideo(await uploadImage(e.target.files[0]))} />
