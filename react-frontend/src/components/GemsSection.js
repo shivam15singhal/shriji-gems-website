@@ -12,7 +12,7 @@ function GemsSection() {
 
   useEffect(() => {
 
-    fetch("/api/gems")
+fetch(`${API_BASE}/api/gems`)
       .then((res) => res.json())
       .then((data) => {
 
@@ -59,7 +59,12 @@ function GemsSection() {
                 onClick={() => openGem(gem._id)}
               >
 
-               <img src={gem.image} 
+              <img
+  src={
+    gem.image?.startsWith("http")
+      ? gem.image
+      : `${API_BASE}${gem.image}`
+  }
   alt={gem.name}
 />
 

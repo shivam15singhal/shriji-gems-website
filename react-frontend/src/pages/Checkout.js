@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import { getCart } from "../services/cartService";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function Checkout() {
   const [cart, setCart] = useState([]);
@@ -93,7 +95,7 @@ navigate("/login");
     ========================= */
     if (payment === "COD") {
       try {
-        const res = await fetch("/api/orders/cod", {
+        fetch(`${API_BASE}/api/orders/cod`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -152,7 +154,7 @@ Swal.fire({
        ONLINE PAYMENT (RAZORPAY)
     ========================= */
     try {
-      const res = await fetch("/api/payment/orders", {
+      const res = await fetch(`${API_BASE}/api/payment/orders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: total })
@@ -182,7 +184,7 @@ Swal.fire({
 
         handler: async function (response) {
           try {
-            const verifyRes = await fetch("/api/payment/verify", {
+            const verifyRes = await fetch(`${API_BASE}/api/payment/verify`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
