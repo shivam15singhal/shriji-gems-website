@@ -95,24 +95,24 @@ navigate("/login");
     ========================= */
     if (payment === "COD") {
       try {
-        fetch(`${API_BASE}/api/orders/cod`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify({
-            items: orderItems,
-            totalAmount: total,
-            shippingDetails: {
-              name,
-              address,
-              phone
-            }
-          })
-        });
+     const res = await fetch(`${API_BASE}/api/orders/cod`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`
+  },
+  body: JSON.stringify({
+    items: orderItems,
+    totalAmount: total,
+    shippingDetails: {
+      name,
+      address,
+      phone
+    }
+  })
+});
 
-        const data = await res.json();
+const data = await res.json();
 
         if (data.success) {
          Swal.close();
