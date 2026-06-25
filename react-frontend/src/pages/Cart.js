@@ -163,15 +163,13 @@ function Cart() {
                 >
                   <div className="cart-product">
                     <img
-                     src={
-  item.image
-    ? `${API_BASE}${item.image}`
-    : "/images/gem-placeholder.png"
-}
-                      alt={
-                        item.name || "Gem"
-                      }
-                    />
+  src={
+    item.image
+      ? item.image
+      : "/images/gem-placeholder.png"
+  }
+  alt={item.name || "Gem"}
+/>
 
                     <div className="cart-product-info">
                       <h3 className="product-title">

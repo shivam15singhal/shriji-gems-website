@@ -19,7 +19,7 @@ function GemVariantDetails() {
   const [pooja, setPooja] = useState("No Energization");
 
   useEffect(() => {
-    fetch(`/api/gems/${gemId}`)
+    fetch(`${API_BASE}/api/gems/${gemId}`)
       .then((res) => res.json())
       .then((data) => {
         setGem(data);
@@ -112,7 +112,7 @@ console.log("VARIANT 👉", variant);
 
             <img
               className="detail-main-img"
-              src={`${API_BASE}${images[currentIndex]}`}
+              src={images[currentIndex]}
               alt={gem.name}
             />
 
@@ -130,7 +130,7 @@ console.log("VARIANT 👉", variant);
             {images.map((img, i) => (
               <img
                 key={i}
-                src={`${API_BASE}${img}`}
+                src={img}
                 alt=""
                 className={i === currentIndex ? "active" : ""}
                 onClick={() => setCurrentIndex(i)}

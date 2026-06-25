@@ -182,9 +182,9 @@ function GemstoneList() {
                 <div className="gem-image">
 
                   <img
-                    src={`${API_BASE}${gem.image}`}
-                    alt={gem.name}
-                  />
+  src={gem.image}
+  alt={gem.name}
+/>
 
                 </div>
 

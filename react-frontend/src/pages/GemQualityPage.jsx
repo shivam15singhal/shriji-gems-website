@@ -169,7 +169,7 @@ const prevImage = () => {
             {data.images.map((img, i) => (
               <img
                 key={i}
-                src={`${API_BASE}${img}`}
+                src={img}
                 onClick={() => {
                   setCurrentIndex(i);
                   setShowVideo(false);
@@ -186,7 +186,7 @@ const prevImage = () => {
 
             {showVideo && data.video ? (
               <video
-               src={`${API_BASE}${data.video}`}
+               src={data.video}
                 controls
                 muted
                  autoPlay
@@ -195,7 +195,7 @@ const prevImage = () => {
               />
             ) : (
               <img
-              src={`${API_BASE}${data.images[currentIndex]}`}
+             src={data.images[currentIndex]}
                 alt=""
                 className="main-media"
               />

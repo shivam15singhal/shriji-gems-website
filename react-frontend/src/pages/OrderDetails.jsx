@@ -352,8 +352,8 @@ function OrderDetails() {
           <div className="order-items">
             {order.items.map((item, i) => (
               <div className="order-item-card" key={i}>
-             <img
-  src={`${API_BASE}${item.image}`}
+           <img
+  src={item.image}
   alt={item.name}
 />
 

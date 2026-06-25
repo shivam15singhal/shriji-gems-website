@@ -239,7 +239,7 @@ setRecommendedFor(
           <input type="file" accept="video/*" onChange={async (e) => setHighVideo(await uploadImage(e.target.files[0]))} />
 
           {highVideo && (
-            <video src={`${API_BASE}${highVideo}`} width="120" controls />
+         <video src={highVideo} width="120" controls />
           )}
 
           <br /><br />
@@ -255,7 +255,7 @@ setRecommendedFor(
           <input type="file" accept="video/*" onChange={async (e) => setMediumVideo(await uploadImage(e.target.files[0]))} />
 
           {mediumVideo && (
-            <video src={`${API_BASE}${mediumVideo}`} width="120" controls />
+            <video src={mediumVideo} width="120" controls />
           )}
 
           <br /><br />
@@ -271,7 +271,7 @@ setRecommendedFor(
           <input type="file" accept="video/*" onChange={async (e) => setLowVideo(await uploadImage(e.target.files[0]))} />
 
           {lowVideo && (
-            <video src={`${API_BASE}${lowVideo}`} width="120" controls />
+            <video src={lowVideo} width="120" controls />
           )}
 
           <br /><br />

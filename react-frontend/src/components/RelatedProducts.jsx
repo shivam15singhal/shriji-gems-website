@@ -48,8 +48,8 @@ function RelatedProducts({ gemId }) {
             onClick={() => handleClick(item._id)}
           >
             <div className="related-image-wrapper">
-              <img
-  src={`${API_BASE}${item.image}`}
+             <img
+  src={item.image}
   alt={item.name}
 />
             </div>

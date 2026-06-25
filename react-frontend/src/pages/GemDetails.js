@@ -68,7 +68,7 @@ function GemDetails() {
         <div className="gem-hero-left">
           <div className="gem-image-wrap">
             <img
-            src={`${API_BASE}${gem?.image}`}
+            src={gem?.image}
               alt={gem?.name}
             />
           </div>
@@ -197,7 +197,7 @@ function GemDetails() {
 
       <div className="quality-image">
         <img
-      src={`${API_BASE}${highImg}`}
+      src={highImg}
           alt="High Quality"
         />
       </div>
@@ -233,7 +233,7 @@ function GemDetails() {
 
       <div className="quality-image">
         <img
-         src={`${API_BASE}${mediumImg}`}
+         src={mediumImg}
           alt="Medium Quality"
         />
       </div>
@@ -268,7 +268,7 @@ function GemDetails() {
 
       <div className="quality-image">
         <img
-          src={`${API_BASE}${lowImg}`}
+          src={lowImg}
           alt="Low Quality"
         />
       </div>

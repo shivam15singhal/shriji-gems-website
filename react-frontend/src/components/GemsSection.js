@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./GemsSection.css";
-const API_BASE =
-  process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_BASE =process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function GemsSection() {
 
@@ -60,8 +59,7 @@ function GemsSection() {
                 onClick={() => openGem(gem._id)}
               >
 
-               <img
-  src={`${API_BASE}${gem.image}`}
+               <img src={gem.image} 
   alt={gem.name}
 />
 
