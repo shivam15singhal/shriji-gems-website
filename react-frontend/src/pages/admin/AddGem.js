@@ -181,7 +181,7 @@ navigate("/admin/gems");
 
             {image && (
               <div className="preview-row">
-                <img src={`${API_BASE}${image}`} alt="" />
+                <img src={image} alt="" />
               </div>
             )}
           </div>
@@ -208,13 +208,13 @@ navigate("/admin/gems");
 
             <div className="preview-row">
               {highImages.map((img, i) => (
-               <img key={i} src={`${API_BASE}${img}`} alt="" />
+              <img key={i} src={img} alt="" />
               ))}
             </div>
 
             {highVideo && (
               <div className="preview-video">
-                <video src={`${API_BASE}${highVideo}`} controls />
+               <video src={highVideo} controls />
               </div>
             )}
           </div>
@@ -232,13 +232,13 @@ navigate("/admin/gems");
 
             <div className="preview-row">
               {mediumImages.map((img, i) => (
-               <img key={i} src={`${API_BASE}${img}`} alt="" />
+               <img key={i} src={img} alt="" />
               ))}
             </div>
 
             {mediumVideo && (
               <div className="preview-video">
-                <video src={`${API_BASE}${mediumVideo}`} controls />
+                <video src={mediumVideo} controls />
               </div>
             )}
           </div>
@@ -256,13 +256,13 @@ navigate("/admin/gems");
 
             <div className="preview-row">
               {lowImages.map((img, i) => (
-                <img key={i} src={`${API_BASE}${img}`} alt="" />
+                <img key={i} src={img} alt="" />
               ))}
             </div>
 
             {lowVideo && (
               <div className="preview-video">
-                <video src={`${API_BASE}${lowVideo}`} controls />
+               <video src={lowVideo} controls />
               </div>
             )}
           </div>
