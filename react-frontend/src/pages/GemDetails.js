@@ -6,7 +6,8 @@ import {
 } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "./GemDetails.css";
-
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 function GemDetails() {
 
@@ -18,7 +19,7 @@ function GemDetails() {
   /* ================= FETCH GEM ================= */
 
   useEffect(() => {
-    fetch(`/api/gems/${id}`)
+   fetch(`${API_BASE}/api/gems/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setGem(data);
