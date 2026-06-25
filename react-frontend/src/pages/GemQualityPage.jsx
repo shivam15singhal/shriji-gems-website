@@ -228,7 +228,7 @@ const prevImage = () => {
 
          <div className="price-box">
   <span className="price-label">Starting Price</span>
-  <h2>₹15,000 / Ratti</h2>
+  <h2>₹{data.pricePerRatti?.toLocaleString()}</h2>
 </div>
 
 <div className="trust-strip">
