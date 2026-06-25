@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RelatedProducts.css";
-const API_BASE =
-  process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 
 function RelatedProducts({ gemId }) {
   const [products, setProducts] = useState([]);
