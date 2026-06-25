@@ -323,7 +323,7 @@ router.post(
   (req, res) => {
 
     res.json({
-      image: `/uploads/gems/${req.file.filename}`
+      image: req.file.path
     });
 
   }

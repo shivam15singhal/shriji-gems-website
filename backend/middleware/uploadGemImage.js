@@ -1,21 +1,18 @@
 const multer = require("multer");
-const path = require("path");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("../config/cloudinary");
 
-const storage = multer.diskStorage({
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: async (req, file) => {
+    const isVideo = file.mimetype.startsWith("video/");
 
-  destination: function (req, file, cb) {
-    cb(null, "uploads/gems");
-  },
-
-  filename: function (req, file, cb) {
-
-    const uniqueName =
-      Date.now() + "-" + Math.round(Math.random() * 1e9);
-
-    cb(null, uniqueName + path.extname(file.originalname));
-
+    return {
+      folder: "shriji-gems",
+      resource_type: isVideo ? "video" : "image",
+      public_id: `${Date.now()}-${Math.round(Math.random() * 1e9)}`
+    };
   }
-
 });
 
 const upload = multer({ storage });
