@@ -83,10 +83,12 @@ function AwardsCarousel() {
 
   const nextSlide = () => {
     setIndex((prev) => prev + 1);
+     startAutoPlay();
   };
 
   const prevSlide = () => {
     setIndex((prev) => prev - 1);
+      startAutoPlay();
   };
 
   /* ===========================
