@@ -57,42 +57,30 @@ function AwardsCarousel() {
       AUTOPLAY
   ============================ */
 
-  const startAutoPlay = () => {
-    stopAutoPlay();
+ const stopAutoPlay = () => {
+  if (autoPlay.current) {
+    clearInterval(autoPlay.current);
+  }
+};
 
-    autoPlay.current = setInterval(() => {
-      nextSlide();
-    }, 3500);
-  };
+useEffect(() => {
+  autoPlay.current = setInterval(() => {
+    setIndex((prev) => prev + 1);
+  }, 3500);
 
-  const stopAutoPlay = () => {
-    if (autoPlay.current) {
-      clearInterval(autoPlay.current);
-    }
-  };
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {
-    
-    startAutoPlay();
-
-    return stopAutoPlay;
-  }, []);
-
+  return () => clearInterval(autoPlay.current);
+}, []);
   /* ===========================
       SLIDER
   ============================ */
 
   const nextSlide = () => {
-    setIndex((prev) => prev + 1);
-     startAutoPlay();
-  };
+  setIndex((prev) => prev + 1);
+};
 
-  const prevSlide = () => {
-    setIndex((prev) => prev - 1);
-      startAutoPlay();
-  };
-
+const prevSlide = () => {
+  setIndex((prev) => prev - 1);
+};
   /* ===========================
       INFINITE LOOP
   ============================ */
@@ -138,18 +126,21 @@ function AwardsCarousel() {
   /* ===========================
       KEYBOARD
   ============================ */
-// eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {
-    const handle = (e) => {
-      if (e.key === "ArrowRight") nextSlide();
+useEffect(() => {
+  const handle = (e) => {
+    if (e.key === "ArrowRight") {
+      setIndex((prev) => prev + 1);
+    }
 
-      if (e.key === "ArrowLeft") prevSlide();
-    };
+    if (e.key === "ArrowLeft") {
+      setIndex((prev) => prev - 1);
+    }
+  };
 
-    window.addEventListener("keydown", handle);
+  window.addEventListener("keydown", handle);
 
-    return () => window.removeEventListener("keydown", handle);
-  }, []);
+  return () => window.removeEventListener("keydown", handle);
+}, []);
 
   /* ===========================
       TOUCH
@@ -178,10 +169,16 @@ function AwardsCarousel() {
       </h2>
 
       <div
-        className="gallery-full"
-        onMouseEnter={stopAutoPlay}
-        onMouseLeave={startAutoPlay}
-      >
+  className="gallery-full"
+  onMouseEnter={stopAutoPlay}
+  onMouseLeave={() => {
+    stopAutoPlay();
+
+    autoPlay.current = setInterval(() => {
+      setIndex((prev) => prev + 1);
+    }, 3500);
+  }}
+>
 
         <button
           className="nav-btn left"
