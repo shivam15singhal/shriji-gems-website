@@ -17,12 +17,12 @@ function WhyChooseUs() {
       <div className="why-stats">
 
   <div className="why-stat">
-    <h3>10,000+</h3>
+    <h3>1 Lakh +</h3>
     <p>Happy Customers</p>
   </div>
 
   <div className="why-stat">
-    <h3>15+</h3>
+    <h3>18+</h3>
     <p>Years Experience</p>
   </div>
 

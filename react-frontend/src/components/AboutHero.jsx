@@ -30,7 +30,7 @@ function AboutHero() {
   </div>
 
   <p className="hero-people">
-    Trusted by <strong>1.2 Lakh+</strong> people seeking clarity and direction
+    Trusted by <strong>1 Lakh+</strong> people seeking clarity and direction
   </p>
 
 <button

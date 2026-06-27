@@ -56,7 +56,7 @@ function AwardsSection() {
             />
           </div>
           <p className="expert-stats">
-5000+ Consultations • 15+ Years Experience
+1 Lakh+ Consultations • 18+ Years Experience
 </p>
 
           <div className="reviews">

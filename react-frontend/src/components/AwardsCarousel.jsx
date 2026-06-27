@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
+
 const images = [
   "/AWARDS-PIC/award1.jpeg",
   "/AWARDS-PIC/award2.jpeg",
@@ -8,22 +9,77 @@ const images = [
   "/AWARDS-PIC/award1.jpeg",
 ];
 
-const duplicatedImages = [...images, ...images, ...images];
+const duplicated = [...images, ...images, ...images];
 
 function AwardsCarousel() {
-  const [index, setIndex] = useState(images.length);
   const trackRef = useRef(null);
+  const viewportRef = useRef(null);
 
-  const CARD_WIDTH = 260; // card width + gap
+  const [index, setIndex] = useState(images.length);
+  const [cardWidth, setCardWidth] = useState(0);
+  const [cardsVisible, setCardsVisible] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(index);
 
-  // Auto slide
+  const autoPlay = useRef(null);
+
+  const touchStart = useRef(0);
+  const touchEnd = useRef(0);
+
+  /* ===========================
+      RESPONSIVE CARD WIDTH
+  ============================ */
+
   useEffect(() => {
-    const timer = setInterval(() => {
+    const update = () => {
+      if (!viewportRef.current) return;
+
+      const width = viewportRef.current.offsetWidth;
+
+      let visible = 4;
+
+      if (width < 600) visible = 1;
+      else if (width < 900) visible = 2;
+      else if (width < 1200) visible = 3;
+
+      setCardsVisible(visible);
+
+      setCardWidth(width / visible);
+    };
+
+    update();
+
+    window.addEventListener("resize", update);
+
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  /* ===========================
+      AUTOPLAY
+  ============================ */
+
+  const startAutoPlay = () => {
+    stopAutoPlay();
+
+    autoPlay.current = setInterval(() => {
       nextSlide();
     }, 3500);
+  };
 
-    return () => clearInterval(timer);
+  const stopAutoPlay = () => {
+    if (autoPlay.current) {
+      clearInterval(autoPlay.current);
+    }
+  };
+
+  useEffect(() => {
+    startAutoPlay();
+
+    return stopAutoPlay;
   }, []);
+
+  /* ===========================
+      SLIDER
+  ============================ */
 
   const nextSlide = () => {
     setIndex((prev) => prev + 1);
@@ -33,63 +89,152 @@ function AwardsCarousel() {
     setIndex((prev) => prev - 1);
   };
 
-  // Infinite loop correction
+  /* ===========================
+      INFINITE LOOP
+  ============================ */
+
   useEffect(() => {
-    if (index >= images.length * 2) {
+    const total = images.length;
+
+    if (index >= total * 2) {
       setTimeout(() => {
         trackRef.current.style.transition = "none";
-        setIndex(images.length);
+        setIndex(total);
+
+        requestAnimationFrame(() => {
+          trackRef.current.style.transition =
+            "transform .6s ease";
+        });
       }, 600);
     }
 
-    if (index <= images.length - 1) {
+    if (index <= total - 1) {
       setTimeout(() => {
         trackRef.current.style.transition = "none";
-        setIndex(images.length * 2 - 1);
+        setIndex(total * 2 - 1);
+
+        requestAnimationFrame(() => {
+          trackRef.current.style.transition =
+            "transform .6s ease";
+        });
       }, 600);
     }
   }, [index]);
 
-  // Restore transition
+  /* ===========================
+      ACTIVE CENTER CARD
+  ============================ */
+
   useEffect(() => {
-    if (trackRef.current) {
-      requestAnimationFrame(() => {
-        trackRef.current.style.transition = "transform 0.6s ease";
-      });
-    }
-  }, [index]);
+    const center = index + Math.floor(cardsVisible / 2);
+
+    setActiveIndex(center);
+  }, [index, cardsVisible]);
+
+  /* ===========================
+      KEYBOARD
+  ============================ */
+
+  useEffect(() => {
+    const handle = (e) => {
+      if (e.key === "ArrowRight") nextSlide();
+
+      if (e.key === "ArrowLeft") prevSlide();
+    };
+
+    window.addEventListener("keydown", handle);
+
+    return () => window.removeEventListener("keydown", handle);
+  }, []);
+
+  /* ===========================
+      TOUCH
+  ============================ */
+
+  const handleTouchStart = (e) => {
+    touchStart.current = e.changedTouches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    touchEnd.current = e.changedTouches[0].clientX;
+
+    const distance =
+      touchStart.current - touchEnd.current;
+
+    if (distance > 50) nextSlide();
+
+    if (distance < -50) prevSlide();
+  };
 
   return (
     <section className="gallery-section">
-      <h2 className="gallery-title"> Meet Your Astrologer</h2>
 
-      <div className="gallery-full">
-        <button className="nav-btn left" onClick={prevSlide}>‹</button>
+      <h2 className="gallery-title">
+        Meet Your Astrologer
+      </h2>
 
-        <div className="gallery-viewport">
+      <div
+        className="gallery-full"
+        onMouseEnter={stopAutoPlay}
+        onMouseLeave={startAutoPlay}
+      >
+
+        <button
+          className="nav-btn left"
+          onClick={prevSlide}
+        >
+          ‹
+        </button>
+
+        <div
+          className="gallery-viewport"
+          ref={viewportRef}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+
           <div
             ref={trackRef}
             className="gallery-track"
             style={{
-              transform: `translateX(-${index * CARD_WIDTH}px)`
+              transform: `translateX(-${index * cardWidth+20}px)`
             }}
           >
-            {duplicatedImages.map((img, i) => {
-              const isActive = i === index + 1;
-              return (
-                <div
-                  className={`gallery-card ${isActive ? "active" : ""}`}
-                  key={i}
-                >
-                  <img src={img} alt="Award" />
-                </div>
-              );
-            })}
+
+            {duplicated.map((img, i) => (
+              <div
+                key={i}
+                className={`gallery-card ${
+                  i === activeIndex ? "active" : ""
+                }`}
+                style={{
+                  width: `${cardWidth - 20}px`
+                }}
+              >
+
+                <img
+                  src={img}
+                  alt={`Award ${i}`}
+                  loading="lazy"
+                  draggable="false"
+                />
+
+              </div>
+            ))}
+
           </div>
+
         </div>
 
-        <button className="nav-btn right" onClick={nextSlide}>›</button>
+        <button
+          className="nav-btn right"
+          onClick={nextSlide}
+        >
+          ›
+        </button>
+
       </div>
+
     </section>
   );
 }

@@ -15,7 +15,7 @@ function WhyPeopleTrust() {
     },
     {
       icon: "⭐",
-      title: "15+ Years Experience",
+      title: "18+ Years Experience",
       text: "Years of experience helping individuals solve challenges related to career, marriage, and finances."
     },
     {

@@ -450,127 +450,387 @@
 }
 
 @media (max-width: 600px) {
+
+  .service_heading{
+    font-size: 30px;
+    margin: 60px 0 30px;
+  }
+
   .services-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 0 12px;
+  }
+
+  .service-card{
+    padding: 16px 12px;
+    border-radius: 16px;
+  }
+
+  .service-card h3{
+    font-size: 14px;
+    line-height: 1.3;
+    margin: 8px 0 6px;
+  }
+
+  .service-card p{
+    font-size: 12px;
+    line-height: 1.4;
+    margin: 2px 0;
   }
 }
 
 /* ===============================
-   AWARDS CAROUSEL
+   SMALL PHONES
 ================================ */
+
+@media (max-width: 400px) {
+
+  .service_heading{
+    font-size: 26px;
+    margin: 50px 0 25px;
+  }
+
+  .services-container{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .service-card{
+    padding: 14px 10px;
+    border-radius: 14px;
+  }
+
+  .service-card h3{
+    font-size: 13px;
+    line-height: 1.3;
+    margin: 6px 0;
+  }
+
+  .service-card p{
+    font-size: 11px;
+    line-height: 1.35;
+    margin: 2px 0;
+  }
+
+  .service-card .icon{
+    font-size: 16px;
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+}
+
+/* ==========================================
+   AWARDS CAROUSEL
+========================================== */
+
 .gallery-section {
-  margin: 100px 0;
-  text-align: center;
+  width: 100%;
+  padding: 90px 0;
+  overflow: hidden;
+  background: #fff;
 }
 
 .gallery-title {
-  font-size: 32px;
+  text-align: center;
+  font-size: 2.2rem;
   font-weight: 700;
-  margin-bottom: 40px;
   color: #e91e63;
+  margin-bottom: 50px;
 }
 
-/* Full width container */
+/* ==========================================
+   WRAPPER
+========================================== */
+
 .gallery-full {
   position: relative;
-  width: 100%;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  justify-content: center;
 }
 
-/* Viewport */
 .gallery-viewport {
   width: 100%;
   overflow: hidden;
   padding: 40px 0;
 }
 
-/* Track */
 .gallery-track {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  transition: transform 0.6s ease;
   will-change: transform;
 }
 
-/* Cards */
+/* ==========================================
+   CARD
+========================================== */
+
 .gallery-card {
-  min-width: 240px;
-  height: 280px;
-  background: #fff;
-  border-radius: 20px;
+  flex-shrink: 0;
+  margin: 0 10px;
+  height: 300px;
+  border-radius: 22px;
   overflow: hidden;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  opacity: 0.4;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  background: white;
+  cursor: pointer;
+  transform: scale(0.82);
+  opacity: .45;
+  filter: blur(1px);
+  transition:
+      transform .45s ease
+      opacity .45s ease,
+      filter .45s ease,
+      box-shadow .45s ease;
+  box-shadow:
+      0 10px 30px rgba(0,0,0,.12);
 }
 
-/* Center zoom */
-.gallery-card.active {
-  transform: scale(1.15);
-  opacity: 1;
-  z-index: 2;
-}
-
-/* Image */
 .gallery-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+  user-select: none;
+  pointer-events: none;
 }
 
-/* Navigation buttons */
+/* ==========================================
+   ACTIVE CARD
+========================================== */
+
+.gallery-card.active {
+  transform: scale(1.08);
+  opacity: 1;
+  filter: blur(0);
+  z-index: 5;
+  box-shadow:
+      0 25px 60px rgba(0,0,0,.22);
+}
+
+/* ==========================================
+   HOVER
+========================================== */
+
+.gallery-card:hover {
+  transform: scale(1.1);
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
 .nav-btn {
   position: absolute;
-  z-index: 10;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 54px;
+  height: 54px;
   border: none;
-  background: #000;
-  color: #fff;
-  font-size: 28px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.82);
+  color: white;
+  font-size: 32px;
   cursor: pointer;
+  z-index: 50;
+  transition: .3s;
 }
 
-.nav-btn.left {
-  left: 20px;
+.nav-btn:hover{
+  background:#e91e63;
+  transform:translateY(-50%) scale(1.08);
 }
 
-.nav-btn.right {
-  right: 20px;
+.nav-btn.left{
+  left:18px;
 }
 
-/* Side fade effect */
-.gallery-viewport::before,
-.gallery-viewport::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 160px;
-  height: 100%;
-  z-index: 5;
+.nav-btn.right{
+  right:18px;
 }
 
-.gallery-viewport::before {
-  left: 0;
-  background: linear-gradient(to right, #fff, transparent);
+/* ==========================================
+   FADE EDGES
+========================================== */
+/* 
+.gallery-full::before,
+.gallery-full::after{
+  content:"";
+  position:absolute;
+  top:0;
+  width:120px;
+  height:100%;
+  z-index:20;
+  pointer-events:none;
 }
 
-.gallery-viewport::after {
-  right: 0;
-  background: linear-gradient(to left, #fff, transparent);
+.gallery-full::before{
+  left:0;
+  background:linear-gradient(
+      to right,
+      #fff,
+      transparent
+  );
 }
 
-/* ===============================
-   RESPONSIVE
-================================ */
+.gallery-full::after{
+  right:0;
+  background:linear-gradient(
+      to left,
+      #fff,
+      transparent
+  );
+} */
 
-@media (max-width: 768px) {
-  .gallery-card {
-    min-width: 180px;
-    height: 230px;
-  }
+/* ==========================================
+   LARGE DESKTOP
+========================================== */
+
+@media (min-width:1400px){
+
+.gallery-card{
+
+height:420px;
+
+}
+
+}
+
+/* ==========================================
+   LAPTOP
+========================================== */
+
+@media (max-width:1200px){
+
+.gallery-title{
+
+font-size:2rem;
+
+}
+
+.gallery-card{
+
+height:330px;
+
+}
+
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width:900px){
+
+.gallery-section{
+
+padding:70px 0;
+
+}
+
+.gallery-title{
+
+font-size:1.9rem;
+
+margin-bottom:35px;
+
+}
+
+.gallery-card{
+
+height:290px;
+
+transform:scale(.88);
+
+}
+
+.gallery-card.active{
+
+transform:scale(1.05);
+
+}
+
+.nav-btn{
+
+width:46px;
+
+height:46px;
+
+font-size:28px;
+
+}
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:600px){
+
+.gallery-section{
+
+padding:60px 0;
+
+}
+
+.gallery-title{
+
+font-size:1.6rem;
+
+margin-bottom:25px;
+
+}
+
+.gallery-viewport{
+
+padding:25px 0;
+
+}
+
+.gallery-card{
+
+height:250px;
+
+margin:0 8px;
+
+transform:scale(.92);
+
+filter:none;
+
+opacity:.7;
+
+}
+
+.gallery-card.active{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+.nav-btn{
+
+display:none;
+
+}
+
+.gallery-full::before,
+.gallery-full::after{
+
+display:none;
+
+}
+.gallery-track{
+    justify-content:center;
+}
+.gallery-card{
+    margin:0 12px;
+}
+
 }
 /* ===============================
    CLIENT REVIEWS
@@ -895,12 +1155,7 @@
     text-align: center;
   }
 
-  .services-container,
-  .astro-review-carousel,
-  .astro-blog-wrapper {
-    grid-template-columns: 1fr;
-  }
-
+ 
   .gallery-container {
     flex-direction: column;
   }
@@ -1089,7 +1344,7 @@
   }
 
   .About-trust-grid{
-    grid-template-columns:1fr;
+    grid-template-columns:(2,1fr);
   }
 
   .About-trust-header h2{

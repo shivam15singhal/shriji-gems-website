@@ -2,7 +2,7 @@ import React from "react";
 
 const services = [
   { title: "🔮 Kundli Vishleshan", desc: "Deep birth chart life insights" ,price: "₹ 11000"},
-  { title: "💞 Match-Making", desc: "Marriage compatibility through astrology",price: "₹ 11000" },
+  { title: "💞 Match-Making", desc: "Marriage compatibility through astrology",price: "₹ 1100" },
   { title: "🏡 Vastu Shastra", desc: "Harmonize spaces for positive energy",price: "₹ 22000" },
   { title: "💎 Gemstone Astrology", desc: "Right gemstones for better life" ,price: " Price May vary "},
   { title: "🎓 Education Guidance", desc: "Choose right path for success" },
