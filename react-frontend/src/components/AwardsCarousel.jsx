@@ -71,7 +71,9 @@ function AwardsCarousel() {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
+    
     startAutoPlay();
 
     return stopAutoPlay;
@@ -136,7 +138,7 @@ function AwardsCarousel() {
   /* ===========================
       KEYBOARD
   ============================ */
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const handle = (e) => {
       if (e.key === "ArrowRight") nextSlide();
