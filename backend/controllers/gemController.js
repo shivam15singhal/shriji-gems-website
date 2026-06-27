@@ -3,23 +3,25 @@ const { sendGemLeadEmail } = require("../utils/sendEmail");
 
 exports.submitGemForm = async (req, res) => {
   try {
-
     const leadData = req.body;
 
-    // 1️⃣ Save lead to database
+    // Save lead to database
     await GemLead.create(leadData);
 
-    // 2️⃣ Send email (do not block user)
-    try {
-      await sendGemLeadEmail(leadData);
-    } catch (err) {
-      console.error("Email failed:", err.message);
-    }
-
+    // Respond immediately
     res.status(201).json({
       success: true,
       message: "Form submitted successfully"
     });
+
+    // Send email in the background
+    sendGemLeadEmail(leadData)
+      .then(() => {
+        console.log("Lead email sent successfully.");
+      })
+      .catch((err) => {
+        console.error("Email failed:", err);
+      });
 
   } catch (error) {
     console.error("Form submit error:", error);
