@@ -8,6 +8,14 @@ import Navbar from "../components/Navbar";
 import "./GemDetails.css";
 const API_BASE =
   process.env.REACT_APP_API_URL || "http://localhost:5000";
+  const optimizeCloudinary = (url) => {
+  if (!url || !url.includes("res.cloudinary.com")) return url;
+
+  return url.replace(
+    "/upload/",
+    "/upload/f_auto,q_auto,w_900/"
+  );
+};
 
 function GemDetails() {
 
@@ -67,10 +75,12 @@ function GemDetails() {
 
         <div className="gem-hero-left">
           <div className="gem-image-wrap">
-            <img
-            src={gem?.image}
-              alt={gem?.name}
-            />
+           <img
+  src={optimizeCloudinary(gem?.image)}
+  alt={gem?.name}
+  loading="eager"
+  decoding="async"
+/>
           </div>
         </div>
 
@@ -196,10 +206,12 @@ function GemDetails() {
       </div>
 
       <div className="quality-image">
-        <img
-      src={highImg}
-          alt="High Quality"
-        />
+       <img
+  src={optimizeCloudinary(highImg)}
+  alt="High Quality"
+  loading="lazy"
+  decoding="async"
+/>
       </div>
     </div>
 
@@ -233,9 +245,11 @@ function GemDetails() {
 
       <div className="quality-image">
         <img
-         src={mediumImg}
-          alt="Medium Quality"
-        />
+  src={optimizeCloudinary(mediumImg)}
+  alt="Medium Quality"
+  loading="lazy"
+  decoding="async"
+/>
       </div>
     </div>
 
@@ -267,10 +281,12 @@ function GemDetails() {
       </div>
 
       <div className="quality-image">
-        <img
-          src={lowImg}
-          alt="Low Quality"
-        />
+       <img
+  src={optimizeCloudinary(lowImg)}
+  alt="Low Quality"
+  loading="lazy"
+  decoding="async"
+/>
       </div>
     </div>
 

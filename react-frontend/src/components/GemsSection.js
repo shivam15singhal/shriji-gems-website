@@ -2,6 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./GemsSection.css";
 const API_BASE =process.env.REACT_APP_API_URL || "http://localhost:5000";
+const optimizeCloudinary = (url) => {
+  if (!url || !url.includes("res.cloudinary.com")) return url;
+
+  return url.replace(
+    "/upload/",
+    "/upload/f_auto,q_auto,w_800/"
+  );
+};
 
 function GemsSection() {
 
@@ -59,13 +67,15 @@ fetch(`${API_BASE}/api/gems`)
                 onClick={() => openGem(gem._id)}
               >
 
-              <img
+        <img
   src={
     gem.image?.startsWith("http")
-      ? gem.image
+      ? optimizeCloudinary(gem.image)
       : `${API_BASE}${gem.image}`
   }
   alt={gem.name}
+  loading="lazy"
+  decoding="async"
 />
 
                 <div className="gem-text">

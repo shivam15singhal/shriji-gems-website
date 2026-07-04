@@ -4,6 +4,14 @@ import "./RelatedProducts.css";
 
 const API_BASE =
   process.env.REACT_APP_API_URL || "http://localhost:5000";
+  const optimizeCloudinary = (url) => {
+  if (!url || !url.includes("res.cloudinary.com")) return url;
+
+  return url.replace(
+    "/image/upload/",
+    "/image/upload/f_auto,q_auto,w_500/"
+  );
+};
 
 function RelatedProducts({ gemId }) {
   const [products, setProducts] = useState([]);
@@ -49,9 +57,11 @@ function RelatedProducts({ gemId }) {
             onClick={() => handleClick(item._id)}
           >
             <div className="related-image-wrapper">
-             <img
-  src={item.image}
+  <img
+  src={optimizeCloudinary(item.image)}
   alt={item.name}
+  loading="lazy"
+  decoding="async"
 />
             </div>
 

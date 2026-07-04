@@ -7,6 +7,23 @@ import RelatedProducts from "../components/RelatedProducts";
 import Swal from "sweetalert2";
 const API_BASE =
   process.env.REACT_APP_API_URL || "http://localhost:5000";
+  const optimizeImage = (url) => {
+  if (!url || !url.includes("res.cloudinary.com")) return url;
+
+  return url.replace(
+    "/image/upload/",
+    "/image/upload/f_auto,q_auto,w_900/"
+  );
+};
+
+const optimizeVideo = (url) => {
+  if (!url || !url.includes("res.cloudinary.com")) return url;
+
+  return url.replace(
+    "/video/upload/",
+    "/video/upload/f_auto,q_auto,vc_auto/"
+  );
+};
 
 function GemQualityPage() {
 
@@ -186,19 +203,21 @@ const prevImage = () => {
 
             {showVideo && data.video ? (
               <video
-               src={data.video}
-                controls
-                muted
-                 autoPlay
+  src={optimizeVideo(data.video)}
+  controls
+  muted
   playsInline
-                className="main-media"
-              />
+  preload="metadata"
+  className="main-media"
+/>
             ) : (
               <img
-             src={data.images[currentIndex]}
-                alt=""
-                className="main-media"
-              />
+  src={optimizeImage(data.images[currentIndex])}
+  alt=""
+  className="main-media"
+  loading="eager"
+  decoding="async"
+/>
             )}
 
            <>
