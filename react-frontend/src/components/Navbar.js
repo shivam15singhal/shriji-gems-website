@@ -222,7 +222,7 @@ function Navbar() {
         onClick={() => navigate("/")}
       >
         <img
-          src="/FINAL__LOGO.png"
+          src="/website_logo.png"
           alt="Shri Ji Gems"
         />
       </div>
