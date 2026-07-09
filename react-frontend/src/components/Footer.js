@@ -154,7 +154,7 @@ Badli, New Delhi – 110042</p>
 
         {/* COLUMN 4 */}
         <div className="footer-column">
-          <img src="/website_logo.png" alt="Store" className="store-img" />
+          <img src="/LASTLOGO" alt="Store" className="store-img" />
 
           
 
