@@ -1,34 +1,23 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
-/* =========================
-   CREATE TRANSPORTER (ONCE)
-========================= */
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  connectionTimeout: 10000,
-  greetingTimeout: 10000,
-  socketTimeout: 10000,
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 /* =========================
    GENERIC SEND EMAIL
 ========================= */
-const sendEmail = async ({ to, subject, html, attachments=[] }) => {
-  const mailOptions = {
-    from: `"Shri Ji" <${process.env.EMAIL_USER}>`,
+const sendEmail = async ({
+  to,
+  subject,
+  html,
+  attachments = []
+}) => {
+  await resend.emails.send({
+    from: "Shri Ji <noreply@shrijigems.in>",
     to,
     subject,
     html,
     attachments
-  };
-
-  await transporter.sendMail(mailOptions);
+  });
 };
 
 /* =========================
@@ -36,7 +25,7 @@ const sendEmail = async ({ to, subject, html, attachments=[] }) => {
 ========================= */
 const sendGemLeadEmail = async (leadData) => {
   await sendEmail({
-    to: process.env.EMAIL_TO,
+    to: process.env.ADMIN_EMAIL,
     subject: "💎 New Gem Recommendation Lead",
     html: `
     <div style="font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;padding:20px">
@@ -51,61 +40,18 @@ const sendGemLeadEmail = async (leadData) => {
 
           <table style="width:100%;border-collapse:collapse">
 
-            <tr>
-              <td style="padding:10px 0;color:#666">Name</td>
-              <td style="font-weight:600">${leadData.name}</td>
-            </tr>
-
-            <tr>
-              <td style="padding:10px 0;color:#666">Phone</td>
-              <td style="font-weight:600">${leadData.phone}</td>
-            </tr>
-
-            <tr>
-              <td style="padding:10px 0;color:#666">Email</td>
-              <td style="font-weight:600">${leadData.email}</td>
-            </tr>
-
-            <tr>
-              <td style="padding:10px 0;color:#666">Gender</td>
-              <td>${leadData.gender}</td>
-            </tr>
-
-            <tr>
-              <td style="padding:10px 0;color:#666">Date of Birth</td>
-              <td>${leadData.dob}</td>
-            </tr>
-
-            <tr>
-              <td style="padding:10px 0;color:#666">Time of Birth</td>
-              <td>${leadData.tob}</td>
-            </tr>
-
-            <tr>
-              <td style="padding:10px 0;color:#666">Place of Birth</td>
-              <td>${leadData.pob}</td>
-            </tr>
-
-            <tr>
-              <td style="padding:10px 0;color:#666">Country</td>
-              <td>${leadData.country}</td>
-            </tr>
-
-            <tr>
-              <td style="padding:10px 0;color:#666">Budget</td>
-              <td style="font-weight:600">${leadData.budget}</td>
-            </tr>
+            <tr><td>Name</td><td><strong>${leadData.name}</strong></td></tr>
+            <tr><td>Phone</td><td>${leadData.phone}</td></tr>
+            <tr><td>Email</td><td>${leadData.email}</td></tr>
+            <tr><td>Gender</td><td>${leadData.gender}</td></tr>
+            <tr><td>Date of Birth</td><td>${leadData.dob}</td></tr>
+            <tr><td>Time of Birth</td><td>${leadData.tob}</td></tr>
+            <tr><td>Place of Birth</td><td>${leadData.pob}</td></tr>
+            <tr><td>Country</td><td>${leadData.country}</td></tr>
+            <tr><td>Budget</td><td>${leadData.budget}</td></tr>
 
           </table>
 
-          <div style="margin-top:30px;padding:16px;background:#f8f8f8;border-radius:8px">
-            📞 <strong>Action Required:</strong> Please contact the customer as soon as possible.
-          </div>
-
-        </div>
-
-        <div style="background:#fafafa;padding:14px;text-align:center;font-size:12px;color:#888">
-          Shri Ji Lead Notification
         </div>
 
       </div>
@@ -116,6 +62,6 @@ const sendGemLeadEmail = async (leadData) => {
 };
 
 module.exports = {
-  sendEmail,        // 🔥 for orders / refunds / status
-  sendGemLeadEmail  // 🔥 keeps existing functionality
+  sendEmail,
+  sendGemLeadEmail
 };
