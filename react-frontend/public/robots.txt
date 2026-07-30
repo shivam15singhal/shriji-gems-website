@@ -1,3 +1,18 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+
+# Allow Google to crawl everything except private pages
+Allow: /
+
+# Block private routes
+Disallow: /admin/
+Disallow: /cart
+Disallow: /checkout
+Disallow: /profile
+Disallow: /orders
+Disallow: /login
+Disallow: /signup
+Disallow: /forgot-password
+Disallow: /reset-password/
+
+# Sitemap
+Sitemap: https://shrijigems.in/sitemap.xml

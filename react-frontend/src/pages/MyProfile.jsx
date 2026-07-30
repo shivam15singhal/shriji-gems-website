@@ -259,7 +259,7 @@ if (progress === 100) {
     )
   }
 >
-  Consult Vijay Sharma Ji
+  Consult Guruji Vijay Sharma Ji
 </button>
 
           </div>

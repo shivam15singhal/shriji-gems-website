@@ -334,7 +334,7 @@ target="_blank"
 rel="noreferrer"
 className="consult-btn"
 >
-Consult Vijay Sharma Ji
+Consult Guruji Vijay Sharma Ji
 </a>
 
         </div>

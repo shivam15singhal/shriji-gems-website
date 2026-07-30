@@ -87,7 +87,7 @@ function AwardsSection() {
             <button
               className="btn btn-call"
               onClick={() =>
-                (window.location.href = "tel:+918826881352")
+                (window.location.href = "tel:+919818307307")
               }
             >
               📞 CALL NOW

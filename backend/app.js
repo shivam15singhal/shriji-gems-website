@@ -1,9 +1,11 @@
 require("dotenv").config();
+console.log("MONGO_URI:", process.env.MONGO_URI);
+console.log("NODE ENV Loaded");
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
-
+const sitemapRoute = require("./routes/sitemap");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -35,6 +37,7 @@ const cartRoutes = require("./routes/cart");
 const gemRoutes = require("./routes/gemRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 
+app.use("/", sitemapRoute);
 app.use("/api/auth", authRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/cart", cartRoutes);
