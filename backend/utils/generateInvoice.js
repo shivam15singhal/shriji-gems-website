@@ -673,6 +673,7 @@ const generateInvoicePDF = (order) => {
       );
 
       y = rowY + 20;
+      console.log("After table:", y);
 
       /* =====================================================
                     CALCULATE TOTALS
@@ -758,6 +759,7 @@ const generateInvoicePDF = (order) => {
       );
 
       y += 100;
+      console.log("After totals:", y);
 
       /* =====================================================
                     PAYMENT DETAILS
@@ -845,7 +847,10 @@ const generateInvoicePDF = (order) => {
         );
 
       y += 130;
-            /* =====================================================
+      console.log("After payment:", y);
+
+      console.log("Before notes:", y);
+      /* =====================================================
                     NOTES & TERMS
       ===================================================== */
 
