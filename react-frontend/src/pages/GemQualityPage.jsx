@@ -5,6 +5,8 @@ import "./GemQualityPage.css";
 import { addToCart as addToCartAPI } from "../services/cartService";
 import RelatedProducts from "../components/RelatedProducts";
 import Swal from "sweetalert2";
+import ProductSEO from "../components/ProductSEO";
+import SEO from "../components/SEO";
 const API_BASE =
   process.env.REACT_APP_API_URL || "http://localhost:5000";
   const optimizeImage = (url) => {
@@ -163,6 +165,20 @@ const prevImage = () => {
 
   return (
     <>
+    <SEO
+  title={`${quality.toUpperCase()} ${gem.name} | Shri Ji Gems`}
+  description={data.description}
+  keywords={`${gem.name}, ${quality} quality ${gem.name}, natural gemstone, certified gemstone, ${gem.color} gemstone`}
+  image={data.images?.[0] || gem.image}
+  url={`https://shrijigems.in/gems/${gem._id}/${quality}`}
+  type="product"
+/>
+
+    <ProductSEO
+  gem={gem}
+  quality={quality}
+  data={data}
+/>
       <Navbar />
 
       <div className="quality-page">
