@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "https://shriji-gems-website.onrender.com/sitemap.xml"
+    }
+  ]
+}

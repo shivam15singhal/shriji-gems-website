@@ -472,12 +472,6 @@ const generateInvoicePDF = (order) => {
       );
 
       doc.text(
-        "HSN",
-        col2,
-        tableStartY + 8
-      );
-
-      doc.text(
         "Qty",
         col3,
         tableStartY + 8
@@ -556,43 +550,14 @@ const generateInvoicePDF = (order) => {
           .fontSize(9)
           .fillColor(COLORS.gray);
 
+        
         doc.text(
-          `Certification : ${
-            item.certification || "-"
-          }`,
-          col1,
-          rowY
-        );
+  `Taxable Value : ${money(taxableValue)}`,
+  col1,
+  rowY
+);
 
-        rowY += 13;
-
-        doc.text(
-          `Weight : ${
-            item.weight || "-"
-          }`,
-          col1,
-          rowY
-        );
-
-        rowY += 13;
-
-        doc.text(
-          `Origin : ${
-            item.origin || "-"
-          }`,
-          col1,
-          rowY
-        );
-
-        rowY += 13;
-
-        doc.text(
-          `Taxable Value : ${money(
-            taxableValue
-          )}`,
-          col1,
-          rowY
-        );
+rowY += 13;
 
         // Right Columns
 
@@ -601,41 +566,37 @@ const generateInvoicePDF = (order) => {
           .fontSize(10)
           .fillColor(COLORS.dark);
 
-        doc.text(
-          item.hsn || "-",
-          col2,
-          rowY - 42
-        );
+        
 
         doc.text(
           qty.toString(),
           col3,
-          rowY - 42
+          rowY - 13
         );
 
         doc.text(
           money(unitPrice),
           col4,
-          rowY - 42
+          rowY - 13
         );
 
         doc.text(
           money(gst),
           col5,
-          rowY - 42
+          rowY - 13
         );
 
         doc.text(
           money(total),
           col6,
-          rowY - 42,
+          rowY - 13,
           {
             width: 40,
             align: "right",
           }
         );
 
-        rowY += 14;
+        rowY += 5;
 
         // Divider Between Products
 
@@ -651,7 +612,7 @@ const generateInvoicePDF = (order) => {
             rowY
           );
 
-          rowY += 12;
+          rowY += 6;
         }
       });
 
@@ -673,7 +634,7 @@ const generateInvoicePDF = (order) => {
       );
 
       y = rowY + 20;
-      console.log("After table:", y);
+      
 
       /* =====================================================
                     CALCULATE TOTALS
@@ -759,7 +720,7 @@ const generateInvoicePDF = (order) => {
       );
 
       y += 100;
-      console.log("After totals:", y);
+      
 
       /* =====================================================
                     PAYMENT DETAILS
@@ -847,9 +808,11 @@ const generateInvoicePDF = (order) => {
         );
 
       y += 130;
-      console.log("After payment:", y);
-
-      console.log("Before notes:", y);
+      if (y + 260 > doc.page.height - doc.page.margins.bottom) {
+  doc.addPage();
+  y = 40;
+}
+    
       /* =====================================================
                     NOTES & TERMS
       ===================================================== */
