@@ -5,6 +5,7 @@ const auth = require("../middleware/auth");
 const adminOnly = require("../middleware/admin");
 
 const GemLead = require("../models/GemLead");
+const ProductInquiry = require("../models/ProductInquiry");
 const Gem = require("../models/Gem");
 
 const upload = require("../middleware/uploadGemImage");
@@ -47,6 +48,45 @@ router.get("/leads", auth, adminOnly, async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Failed to fetch leads"
+    });
+
+  }
+
+});
+
+
+
+router.get("/product-inquiries", auth, adminOnly, async (req, res) => {
+
+  try {
+
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+
+    const skip = (page - 1) * limit;
+
+    const inquiries = await ProductInquiry.find()
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
+    const total = await ProductInquiry.countDocuments();
+
+    res.json({
+      success: true,
+      inquiries,
+      total,
+      page,
+      pages: Math.ceil(total / limit)
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch product inquiries"
     });
 
   }
@@ -136,6 +176,37 @@ router.delete("/leads/:id", auth, adminOnly, async (req, res) => {
 
 
 
+router.delete("/product-inquiries/:id", auth, adminOnly, async (req, res) => {
+
+  try {
+
+    const inquiry = await ProductInquiry.findByIdAndDelete(req.params.id);
+
+    if (!inquiry) {
+      return res.status(404).json({
+        success: false,
+        message: "Product inquiry not found"
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Product inquiry deleted"
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to delete product inquiry"
+    });
+
+  }
+
+});
+
+
+
 /**
  * @route   GET /api/admin/stats
  * @desc    Get lead statistics
@@ -174,6 +245,52 @@ router.get("/stats", auth, adminOnly, async (req, res) => {
       newLeads,
       contactedLeads,
       closedLeads
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      success: false,
+      message: "Stats failed"
+    });
+
+  }
+
+});
+
+
+router.get("/product-inquiries/stats", auth, adminOnly, async (req, res) => {
+
+  try {
+
+    const totalInquiries = await ProductInquiry.countDocuments();
+
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0);
+
+    const todayInquiries = await ProductInquiry.countDocuments({
+      createdAt: { $gte: todayStart }
+    });
+
+    const newInquiries = await ProductInquiry.countDocuments({
+      status: "New"
+    });
+
+    const contactedInquiries = await ProductInquiry.countDocuments({
+      status: "Contacted"
+    });
+
+    const closedInquiries = await ProductInquiry.countDocuments({
+      status: "Closed"
+    });
+
+    res.json({
+      success: true,
+      totalInquiries,
+      todayInquiries,
+      newInquiries,
+      contactedInquiries,
+      closedInquiries
     });
 
   } catch (error) {
@@ -328,4 +445,46 @@ router.post(
 
   }
 );
+
+
+
+router.patch("/product-inquiries/:id/status", auth, adminOnly, async (req, res) => {
+
+  try {
+
+    const { status } = req.body;
+
+    if (!["New", "Contacted", "Closed"].includes(status)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid status"
+      });
+    }
+
+    const inquiry = await ProductInquiry.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true }
+    );
+
+    res.json({
+      success: true,
+      message: "Status updated",
+      inquiry
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to update status"
+    });
+
+  }
+
+});
+
+
+
+
 module.exports = router;

@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getCart } from "../services/cartService";
+// import { getCart } from "../services/cartService";
 import { AuthContext } from "../context/AuthContext";
 import { HiBars3, HiXMark } from "react-icons/hi2";
 import "./Navbar.css";
 import {
-  HiOutlineShoppingBag,
+  // HiOutlineShoppingBag,
   HiOutlineUser,
 } from "react-icons/hi2";
 
@@ -16,7 +16,7 @@ function Navbar() {
   const navigate = useNavigate();
   const { user, logout } = useContext(AuthContext);
 
-  const [cartCount, setCartCount] = useState(0);
+  // const [cartCount, setCartCount] = useState(0);
   const [showGemsDropdown, setShowGemsDropdown] = useState(false);
   const [showAccountDropdown, setShowAccountDropdown] = useState(false);
   const [gems, setGems] = useState([]);
@@ -43,24 +43,24 @@ function Navbar() {
   }, [user]);
 
   /* CART */
-  useEffect(() => {
-    async function loadCartCount() {
-      try {
-        const data = await getCart();
-        const totalQty = data.items.reduce(
-          (sum, item) => sum + item.quantity,
-          0
-        );
-        setCartCount(totalQty);
-      } catch {
-        setCartCount(0);
-      }
-    }
+  // useEffect(() => {
+  //   async function loadCartCount() {
+  //     try {
+  //       const data = await getCart();
+  //       const totalQty = data.items.reduce(
+  //         (sum, item) => sum + item.quantity,
+  //         0
+  //       );
+  //       setCartCount(totalQty);
+  //     } catch {
+  //       setCartCount(0);
+  //     }
+  //   }
 
-    loadCartCount();
-    window.addEventListener("cartUpdated", loadCartCount);
-    return () => window.removeEventListener("cartUpdated", loadCartCount);
-  }, []);
+  //   loadCartCount();
+  //   window.addEventListener("cartUpdated", loadCartCount);
+  //   return () => window.removeEventListener("cartUpdated", loadCartCount);
+  // }, []);
 
   /* LOAD GEMS */
   useEffect(() => {
@@ -189,9 +189,9 @@ function Navbar() {
       <Link to="/profile">My Profile</Link>
     </li>
 
-    <li className="mobile-only">
+    {/* <li className="mobile-only">
       <Link to="/orders">My Orders</Link>
-    </li>
+    </li> */}
 
     <li className="mobile-only">
       <button
@@ -271,7 +271,7 @@ function Navbar() {
 
             {/* CART */}
 
-            <li>
+            {/* <li>
              <Link to="/cart" className="icon-link cart-link">
 
   <HiOutlineShoppingBag className="nav-icon" />
@@ -283,7 +283,7 @@ function Navbar() {
   </span>
 
 </Link>
-            </li>
+            </li> */}
 
             {/* ACCOUNT */}
 
@@ -373,12 +373,12 @@ function Navbar() {
 
                     <div className="account-divider"></div>
 
-                    <Link
+                    {/* <Link
                       to="/orders"
                       className="dropdown-item"
                     >
                       My Orders
-                    </Link>
+                    </Link> */}
 
                     <Link
                       to="/profile"

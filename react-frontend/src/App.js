@@ -30,6 +30,7 @@ import ShippingPolicy from "./pages/ShippingPolicy";
 import PaymentMethods from "./pages/PaymentMethods";
 import ReturnExchange from "./pages/ReturnExchange";
 import ForgotPassword from "./pages/ForgotPassword";
+import AdminProductInquiries from "./pages/admin/AdminProductInquiries";
 import ResetPassword from "./pages/ResetPassword";
 
 function App() {
@@ -48,13 +49,13 @@ function App() {
 
         <Route path="/gems/:gemId/:variantIndex" element={<GemVariantDetails />} />
 
-        <Route path="/cart" element={
+        {/* <Route path="/cart" element={
           <ProtectedRoute>
             <Cart />
           </ProtectedRoute>
-        }/>
+        }/> */}
 
-        <Route path="/checkout" element={<Checkout />} />
+        {/* <Route path="/checkout" element={<Checkout />} /> */}
 
         <Route path="/about" element={<About />} />
 
@@ -64,9 +65,9 @@ function App() {
 
         <Route path="/profile" element={<MyProfile />} />
 
-        <Route path="/orders" element={<MyOrders />} />
-
-        <Route path="/orders/:orderId" element={<OrderDetails />} />
+        {/* <Route path="/orders" element={<MyOrders />} /> */}
+{/* 
+        <Route path="/orders/:orderId" element={<OrderDetails />} /> */}
 
         <Route path="/admin/orders" element={<AdminOrders />} />
 
@@ -149,6 +150,15 @@ function App() {
 <Route
   path="/reset-password/:token"
   element={<ResetPassword />}
+/>
+
+<Route
+  path="/admin/product-inquiries"
+  element={
+    <AdminRoute>
+      <AdminProductInquiries />
+    </AdminRoute>
+  }
 />
 
       </Routes>

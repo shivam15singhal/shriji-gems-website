@@ -46,6 +46,15 @@ function AdminDashboard() {
             <h3>Leads</h3>
             <p>Manage astrology consultation leads</p>
           </div>
+          {/* PRODUCT INQUIRIES */}
+
+<div
+  className="dashboard-card"
+  onClick={() => navigate("/admin/product-inquiries")}
+>
+  <h3>Product Inquiries</h3>
+  <p>Manage gemstone purchase inquiries</p>
+</div>
 
         </div>
 
