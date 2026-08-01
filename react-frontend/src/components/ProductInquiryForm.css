@@ -1,0 +1,162 @@
+.product-inquiry {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 28px;
+    margin: 25px 0;
+    border: 1px solid #f1e6d6;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.product-inquiry:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 16px 45px rgba(0,0,0,.12);
+}
+
+.product-inquiry h3{
+    margin:0;
+    font-size:28px;
+    color:#7b1f32;
+    font-weight:700;
+    font-family: 'Playfair Display', serif;
+}
+
+.inquiry-subtitle{
+    margin-top:10px;
+    margin-bottom:25px;
+    color:#666;
+    line-height:1.6;
+    font-size:15px;
+}
+
+.product-inquiry form{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.product-inquiry input,
+.product-inquiry textarea{
+
+    width:100%;
+    padding:14px 16px;
+    border:1px solid #e2e2e2;
+    border-radius:10px;
+    font-size:15px;
+    transition:.3s;
+    outline:none;
+    box-sizing:border-box;
+    background:#fff;
+}
+
+.product-inquiry textarea{
+    resize:vertical;
+    min-height:120px;
+}
+
+.product-inquiry input:focus,
+.product-inquiry textarea:focus{
+
+    border-color:#d4af37;
+    box-shadow:0 0 0 4px rgba(212,175,55,.15);
+
+}
+
+.product-inquiry button{
+
+    border:none;
+    cursor:pointer;
+    padding:15px;
+    border-radius:10px;
+    background:linear-gradient(135deg,#7b1f32,#b13d5c);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.product-inquiry button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.product-inquiry button:disabled{
+
+    opacity:.7;
+    cursor:not-allowed;
+
+}
+
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.form-group label{
+
+    font-size:14px;
+    font-weight:600;
+    color:#444;
+
+}
+
+.selected-gem-card{
+
+    background:linear-gradient(135deg,#fffaf0,#fff6df);
+    border:1px solid #ead7a3;
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:22px;
+
+}
+
+.selected-gem-card h4{
+
+    margin:0 0 15px;
+    color:#7b1f32;
+    font-size:18px;
+
+}
+
+.selected-item{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+    border-bottom:1px dashed rgba(0,0,0,.08);
+
+}
+
+.selected-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.selected-item span{
+
+    color:#777;
+    font-size:14px;
+
+}
+
+.selected-item strong{
+
+    color:#222;
+    font-weight:600;
+
+}
+
+.privacy-text{
+
+    margin-top:15px;
+    text-align:center;
+    font-size:13px;
+    color:#777;
+    line-height:1.6;
+
+}

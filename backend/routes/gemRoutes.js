@@ -2,12 +2,14 @@ const express = require("express");
 const router = express.Router();
 
 const { submitGemForm } = require("../controllers/gemController");
+const {submitProductInquiry,} = require("../controllers/productInquiryController");
 const Gem = require("../models/Gem");
 
 
 /* ================= GEM RECOMMENDATION FORM ================= */
 
 router.post("/gem-recommendation", submitGemForm);
+router.post("/product-inquiry", submitProductInquiry);
 
 
 /* ================= GET ALL GEMS ================= */

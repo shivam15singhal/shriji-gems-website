@@ -61,7 +61,90 @@ const sendGemLeadEmail = async (leadData) => {
   });
 };
 
+const sendProductInquiryEmail = async (data) => {
+  await sendEmail({
+    to: process.env.ADMIN_EMAIL,
+    subject: `🛍 New Purchase Inquiry - ${data.gemName}`,
+    html: `
+    <div style="font-family:Arial,sans-serif;background:#f4f4f4;padding:20px">
+
+      <div style="max-width:650px;margin:auto;background:white;border-radius:12px;overflow:hidden">
+
+        <div style="background:#111;color:white;padding:18px">
+
+          <h2 style="margin:0">
+            New Product Inquiry
+          </h2>
+
+        </div>
+
+        <div style="padding:24px">
+
+          <h3>Gem Details</h3>
+
+          <table style="width:100%;border-collapse:collapse">
+
+            <tr>
+              <td><strong>Gem</strong></td>
+              <td>${data.gemName}</td>
+            </tr>
+
+            <tr>
+              <td><strong>Quality</strong></td>
+              <td>${data.quality}</td>
+            </tr>
+
+            <tr>
+              <td><strong>Carat</strong></td>
+              <td>${data.carat}</td>
+            </tr>
+
+            <tr>
+              <td><strong>Type</strong></td>
+              <td>${data.buyType}</td>
+            </tr>
+
+          </table>
+
+          <hr>
+
+          <h3>Customer Details</h3>
+
+          <table style="width:100%;border-collapse:collapse">
+
+            <tr>
+              <td><strong>Name</strong></td>
+              <td>${data.name}</td>
+            </tr>
+
+            <tr>
+              <td><strong>Phone</strong></td>
+              <td>${data.phone}</td>
+            </tr>
+
+            <tr>
+              <td><strong>Email</strong></td>
+              <td>${data.email || "-"}</td>
+            </tr>
+
+            <tr>
+              <td><strong>Message</strong></td>
+              <td>${data.message || "-"}</td>
+            </tr>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+    `,
+  });
+};
+
 module.exports = {
   sendEmail,
-  sendGemLeadEmail
+  sendGemLeadEmail,
+  sendProductInquiryEmail
 };

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "./GemQualityPage.css";
-import { addToCart as addToCartAPI } from "../services/cartService";
 import RelatedProducts from "../components/RelatedProducts";
-import Swal from "sweetalert2";
 import ProductSEO from "../components/ProductSEO";
 import SEO from "../components/SEO";
 import ProductInquiryForm from "../components/ProductInquiryForm";
@@ -32,7 +30,7 @@ const optimizeVideo = (url) => {
 function GemQualityPage() {
 
   const { id, quality } = useParams();
-  const navigate = useNavigate();
+
 
   const [gem, setGem] = useState(null);
   const [selectedWeight, setSelectedWeight] = useState(null);
@@ -40,7 +38,7 @@ function GemQualityPage() {
   const [showVideo, setShowVideo] = useState(false); // 🔥 NEW
 
   const [buyType, setBuyType] = useState("Loose");
-  const [quantity, setQuantity] = useState(1);
+
 
   useEffect(() => {
     fetch(`${API_BASE}/api/gems/${id}`)
@@ -56,11 +54,8 @@ function GemQualityPage() {
 
   const weights = [4.25, 5.25, 6.25, 7.25, 8.25, 9.25, 10.25, 11.25, 12.25];
 
-  const pricePerRatti = data.pricePerRatti;
 
-  const totalPrice = selectedWeight
-    ? Math.round(pricePerRatti * selectedWeight * quantity)
-    : null;
+  
 
 const totalSlides = data.video
   ? data.images.length + 1
@@ -104,66 +99,6 @@ const prevImage = () => {
   }
 };
 
-  // 🛒 ADD TO CART
-  async function handleAddToCart() {
-
-    if (!selectedWeight) {
-     Swal.fire({
-  icon: "warning",
-  title: "Select Weight",
-  text: "Please select a gemstone weight first.",
-  confirmButtonColor: "#ff6f9f"
-});
-      return;
-    }
-
-    try {
-
-      const item = {
-        gemId: gem._id,
-        variantId: quality,
-        quality,
-        name: `${quality.toUpperCase()} ${gem.name}`,
-        image: data.images[currentIndex] || gem.image,
-        weight: selectedWeight,
-        quantity,
-        price: Math.round(pricePerRatti * selectedWeight),
-        buyType,
-        id: `${gem._id}-${quality}-${selectedWeight}`
-      };
-
-      await addToCartAPI(item);
-
-      Swal.fire({
-  icon: "success",
-  title: "Added to Cart",
-  text: "Gemstone added successfully.",
-  confirmButtonColor: "#25D366",
-  timer: 1800,
-  showConfirmButton: false
-});
-      window.dispatchEvent(new Event("cartUpdated"));
-
-    } catch (err) {
-      if (err.response?.status === 401) {
-        Swal.fire({
-  icon: "info",
-  title: "Login Required",
-  text: "Please login to continue.",
-  confirmButtonColor: "#ff6f9f"
-}).then(() => {
-  navigate("/login");
-});
-      } else {
-       Swal.fire({
-  icon: "error",
-  title: "Something Went Wrong",
-  text: "Failed to add item to cart.",
-  confirmButtonColor: "#ff6f9f"
-});
-      }
-    }
-  }
 
   return (
     <>
@@ -264,14 +199,20 @@ const prevImage = () => {
           </h1>
 
          <div className="price-box">
-  <span className="price-label">Starting Price</span>
-  <h2>₹{data.pricePerRatti?.toLocaleString()}</h2>
+  <span className="price-label">
+    Starting From
+</span>
+
+<h2>
+    ₹{data.pricePerRatti.toLocaleString()}
+    <small>/ Ratti</small>
+</h2>
 </div>
 
 <div className="trust-strip">
   <span>🚚 Free Shipping</span>
   <span>📜 Certified</span>
-  <span>🔒 Secure Payment</span>
+  <span>👨‍🏫 Expert Consultation</span>
 </div>
 
           <p className="description">{data.description}</p>
@@ -306,51 +247,18 @@ const prevImage = () => {
               ))}
             </div>
           </div>
-          <div className="quantity-section">
 
-  <h4>Quantity</h4>
-
-  <div className="qty-box">
-
-    <button
-      onClick={() =>
-        setQuantity((prev) => Math.max(1, prev - 1))
-      }
-    >
-      −
-    </button>
-
-    <span>{quantity}</span>
-
-    <button
-      onClick={() =>
-        setQuantity((prev) => prev + 1)
-      }
-    >
-      +
-    </button>
-
-  </div>
-
-</div>
-
-          {/* PRICE */}
-          {totalPrice && (
-            <p className="total-price">
-              Total Price: ₹{totalPrice.toLocaleString()}
-            </p>
-          )}
         
-
-          {/* <button className="add-cart" onClick={handleAddToCart}>
-            ADD TO CART
-          </button> */}
           <ProductInquiryForm
     gem={gem}
     quality={quality}
     selectedWeight={selectedWeight}
     buyType={buyType}
 />
+
+<div className="or-divider">
+    <span>OR</span>
+</div>
 
           <a
 href="https://wa.me/919818307307"
