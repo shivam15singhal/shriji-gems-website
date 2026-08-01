@@ -111,7 +111,7 @@ function Login() {
         <h2>Vijay Sharma</h2>
 
         <p>
-          Lal Kitab Visheshagya • 15+ Years Experience
+          Lal Kitab Visheshagya • 18+ Years Experience
         </p>
 
         <div className="left-stats">
@@ -126,7 +126,7 @@ function Login() {
           </div>
 
           <div>
-            <h3>15+</h3>
+            <h3>18+</h3>
             <span>Years</span>
           </div>
         </div>

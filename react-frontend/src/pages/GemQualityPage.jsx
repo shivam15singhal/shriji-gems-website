@@ -7,6 +7,8 @@ import RelatedProducts from "../components/RelatedProducts";
 import Swal from "sweetalert2";
 import ProductSEO from "../components/ProductSEO";
 import SEO from "../components/SEO";
+import ProductInquiryForm from "../components/ProductInquiryForm";
+
 const API_BASE =
   process.env.REACT_APP_API_URL || "http://localhost:5000";
   const optimizeImage = (url) => {
@@ -340,9 +342,15 @@ const prevImage = () => {
           )}
         
 
-          <button className="add-cart" onClick={handleAddToCart}>
+          {/* <button className="add-cart" onClick={handleAddToCart}>
             ADD TO CART
-          </button>
+          </button> */}
+          <ProductInquiryForm
+    gem={gem}
+    quality={quality}
+    selectedWeight={selectedWeight}
+    buyType={buyType}
+/>
 
           <a
 href="https://wa.me/919818307307"

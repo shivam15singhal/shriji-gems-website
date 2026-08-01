@@ -107,16 +107,16 @@ const generateInvoicePDF = (order) => {
 
       // Uncomment when logo is available
 
-      /*
+      
       doc.image(
-        "assets/logo.png",
+        "public/LOGO_DONE.png",
         PAGE_LEFT,
         y,
         {
           width: 55,
         }
       );
-      */
+      
 
       doc
         .font("Helvetica-Bold")
@@ -231,7 +231,7 @@ const generateInvoicePDF = (order) => {
                       BILL TO / SOLD BY
       ===================================================== */
 
-      const customerBoxHeight = 130;
+      const customerBoxHeight = 160;
       const halfWidth = PAGE_WIDTH / 2;
 
       // Left Box
@@ -731,7 +731,7 @@ rowY += 13;
         PAGE_LEFT,
         y,
         PAGE_WIDTH,
-        110
+        90
       );
 
       doc
@@ -788,26 +788,8 @@ rowY += 13;
         y + 82
       );
 
-      /* ---------------- QR Placeholder ---------------- */
-
-      drawBox(
-        doc,
-        PAGE_RIGHT - 90,
-        y + 15,
-        70,
-        70
-      );
-
-      doc
-        .fontSize(8)
-        .fillColor(COLORS.gray)
-        .text(
-          "QR CODE",
-          PAGE_RIGHT - 72,
-          y + 45
-        );
-
-      y += 130;
+      
+      y += 110;
       if (y + 260 > doc.page.height - doc.page.margins.bottom) {
   doc.addPage();
   y = 40;
