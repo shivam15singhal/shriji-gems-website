@@ -1,5 +1,9 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 // import { getCart } from "../services/cartService";
 import { AuthContext } from "../context/AuthContext";
 import { HiBars3, HiXMark } from "react-icons/hi2";
@@ -14,6 +18,7 @@ const API_BASE =
 
 function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, logout } = useContext(AuthContext);
 
   // const [cartCount, setCartCount] = useState(0);
@@ -74,6 +79,21 @@ function Navbar() {
     navigate("/gemstones");
     setShowGemsDropdown(false);
   }
+  const handleGemRecommendation = () => {
+  if (location.pathname === "/") {
+    const section = document.getElementById("form-section");
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  } else {
+    navigate("/#form-section");
+  }
+
+  setMobileMenuOpen(false);
+};
 
   const openAccountDropdown = () => {
     clearTimeout(dropdownTimer.current);
@@ -154,10 +174,13 @@ function Navbar() {
           </li>
 
           <li>
-            <a href="#form-section">
-              Gem Recommendation
-            </a>
-          </li>
+  <button
+    className="nav-link-btn"
+    onClick={handleGemRecommendation}
+  >
+    Gem Recommendation
+  </button>
+</li>
           <li>
   <Link to="/about">
     About Us

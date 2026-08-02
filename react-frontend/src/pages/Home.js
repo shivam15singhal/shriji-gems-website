@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import GemsSection from "../components/GemsSection";
@@ -12,7 +12,26 @@ import FAQ from "../components/FAQ";
 import Footer from "../components/Footer";
 import SEO from "../components/SEO";
 import StructuredData from "../components/StructuredData";
+
+import { useLocation } from "react-router-dom";
+
 function Home() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === "#form-section") {
+      setTimeout(() => {
+        const section = document.getElementById("form-section");
+
+        if (section) {
+          section.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }, 150);
+    }
+  }, [location]);
   return (
     <>
       <SEO

@@ -469,21 +469,7 @@ Swal.fire({
 
     </div>
 
-    <div className="astro-item">
-
-      <label>💎 Lucky Gem</label>
-
-      <span>Coming Soon</span>
-
-    </div>
-
-    <div className="astro-item">
-
-      <label>🪐 Ruling Planet</label>
-
-      <span>Coming Soon</span>
-
-    </div>
+    
 
   </div>
 

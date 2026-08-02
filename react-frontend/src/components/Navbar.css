@@ -86,6 +86,20 @@
   color:#e45895;
 }
 
+.nav-link-btn{
+  background:none;
+  border:none;
+  color:inherit;
+  font:inherit;
+  cursor:pointer;
+  padding:0;
+}
+
+.nav-link-btn:hover{
+  color:#d4af37;
+}
+
+
 .logo{
   display:flex;
   justify-content:center;
