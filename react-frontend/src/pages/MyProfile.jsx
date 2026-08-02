@@ -82,21 +82,8 @@ useEffect(() => {
 
   const completed = fields.filter(Boolean).length;
   const progress = Math.round((completed / fields.length) * 100);
-    useEffect(() => {
-  const alreadyShown = localStorage.getItem("profileCompleteShown");
-
-  if (progress === 100 && !alreadyShown) {
-    Swal.fire({
-      icon: "success",
-      title: "Profile Complete 🎉",
-      text: "Your astrology profile is now fully completed.",
-      confirmButtonColor: "#c9a23f",
-    });
-
-    localStorage.setItem("profileCompleteShown", "true");
-  }
-}, [progress]);
-
+ 
+ 
 
   /* =========================
      FORM CHANGE
