@@ -35,8 +35,8 @@ function Home() {
   return (
     <>
       <SEO
-        title="Shri Ji Gems | Certified Natural Gemstones & Astrology Consultation"
-        description="Buy certified natural gemstones including Yellow Sapphire (Pukhraj), Blue Sapphire (Neelam), Ruby (Manik), Emerald (Panna), Pearl and more. Get expert astrology consultation and secure delivery across India."
+        title="Shri Ji Gems | Laal Kitab Visheshagya, Certified Gemstones & Astrology Consultation"
+       description="Buy certified natural gemstones including Yellow Sapphire (Pukhraj), Blue Sapphire (Neelam), Ruby (Manik), Emerald (Panna), Pearl and more. Get expert astrology consultation and guidance from a Laal Kitab Visheshagya with secure delivery across India."
         keywords="Shri Ji Gems, Gemstones, Certified Gemstones, Astrology Consultation, Pukhraj, Yellow Sapphire, Neelam, Blue Sapphire, Ruby, Manik, Emerald, Panna, Pearl, Cat's Eye, Coral, Gemstone Store India"
         image="https://shrijigems.in/logo.png"
         url="https://shrijigems.in/"
