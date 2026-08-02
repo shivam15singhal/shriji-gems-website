@@ -156,7 +156,7 @@ const prevImage = () => {
 
             {showVideo && data.video ? (
               <video
-  src={optimizeVideo(data.video)}
+  src={(data.video)}
   controls
   muted
   playsInline

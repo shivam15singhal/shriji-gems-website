@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -16,10 +16,21 @@ function MyProfile() {
   const [editMode, setEditMode] = useState(false);
 
   const [form, setForm] = useState({
-    dob: user?.dob || "",
-    birthTime: user?.birthTime || "",
-    birthPlace: user?.birthPlace || "",
+  dob: "",
+  birthTime: "",
+  birthPlace: "",
+});
+
+useEffect(() => {
+  if (!user) return;
+
+  setForm({
+    dob: user.dob || "",
+    birthTime: user.birthTime || "",
+    birthPlace: user.birthPlace || "",
   });
+}, [user]);
+  
 
   if (loading) return <div className="profile-loading">Loading...</div>;
   if (!user) return null;
@@ -71,6 +82,21 @@ function MyProfile() {
 
   const completed = fields.filter(Boolean).length;
   const progress = Math.round((completed / fields.length) * 100);
+    useEffect(() => {
+  const alreadyShown = localStorage.getItem("profileCompleteShown");
+
+  if (progress === 100 && !alreadyShown) {
+    Swal.fire({
+      icon: "success",
+      title: "Profile Complete 🎉",
+      text: "Your astrology profile is now fully completed.",
+      confirmButtonColor: "#c9a23f",
+    });
+
+    localStorage.setItem("profileCompleteShown", "true");
+  }
+}, [progress]);
+
 
   /* =========================
      FORM CHANGE
@@ -131,7 +157,7 @@ Swal.fire({
     try {
       const token = localStorage.getItem("token");
 
-       await axios.post(
+       const res = await axios.post(
         `${API_BASE}/api/auth/avatar`,
         data,
         {
@@ -140,6 +166,9 @@ Swal.fire({
           },
         }
       );
+      if (res.data.user) {
+  setUser(res.data.user);
+}
 
       Swal.fire({
   icon: "success",
@@ -148,6 +177,7 @@ Swal.fire({
   timer: 1500,
   showConfirmButton: false
 });
+
     } catch {
      Swal.fire({
   icon: "error",
@@ -156,6 +186,7 @@ Swal.fire({
   confirmButtonColor: "#ff8fb3"
 });
     }
+    e.target.value = "";
   };
 
   /* =========================
@@ -192,14 +223,7 @@ Swal.fire({
 
   navigate("/login");
 };
-if (progress === 100) {
-  Swal.fire({
-    icon: "success",
-    title: "Profile Complete 🎉",
-    text: "Your profile is now fully completed.",
-    confirmButtonColor: "#ff8fb3"
-  });
-}
+
 
   return (
     <>
@@ -213,56 +237,105 @@ if (progress === 100) {
 
           <div className="profile-sidebar">
 
-            <div className="avatar-box">
-              {user.avatar ? (
-                <img src={user.avatar} alt="avatar" />
-              ) : (
-                <div className="avatar-placeholder">
-                  {user.name.charAt(0).toUpperCase()}
-                </div>
-              )}
+  <div className="profile-cover"></div>
 
-              <label className="avatar-upload">
-                Change Avatar
-                <input type="file" hidden onChange={uploadAvatar} />
-              </label>
-            </div>
+  <div className="avatar-box">
 
-            <h2>{user.name}</h2>
-            <p className="email">{user.email}</p>
+    {user.avatar ? (
+      <img src={user.avatar} alt="avatar" />
+    ) : (
+      <div className="avatar-placeholder">
+        {user.name.charAt(0).toUpperCase()}
+      </div>
+    )}
 
-            <div className="meta">
-              <div>
-                <span>Account</span>
-                <strong>
-                  {user.authProvider === "google" ? "Google" : "Email"}
-                </strong>
-              </div>
+    <label className="avatar-upload">
 
-              <div>
-                <span>Member Since</span>
-                <strong>
-                  {new Date(user.createdAt).toLocaleDateString()}
-                </strong>
-              </div>
-            </div>
+      <span className="camera-icon">📷</span>
 
-            <button className="logout-btn" onClick={logout}>
-              Logout
-            </button>
-            <button
-  className="consult-btn-profile"
-  onClick={() =>
-    window.open(
-      "https://wa.me/919818307307",
-      "_blank"
-    )
-  }
->
-  Consult Guruji Vijay Sharma Ji
-</button>
+      <input
+        type="file"
+        hidden
+        onChange={uploadAvatar}
+      />
 
-          </div>
+    </label>
+
+  </div>
+
+  <h2>{user.name}</h2>
+
+  <p className="email">
+    {user.email}
+  </p>
+
+  <div className="member-badge">
+
+    ⭐ Premium Member
+
+  </div>
+
+  <div className="meta">
+
+    <div>
+
+      <span>Account Type</span>
+
+      <strong>
+        {user.authProvider === "google"
+          ? "Google Login"
+          : "Email Login"}
+      </strong>
+
+    </div>
+
+    <div>
+
+      <span>Member Since</span>
+
+      <strong>
+        {new Date(user.createdAt).toLocaleDateString()}
+      </strong>
+
+    </div>
+
+    <div>
+
+      <span>Zodiac Sign</span>
+
+      <strong>
+        {getZodiacSign(user.dob)}
+      </strong>
+
+    </div>
+
+  </div>
+
+  <button
+    className="consult-btn-profile"
+    onClick={() =>
+      window.open(
+        "https://wa.me/919818307307",
+        "_blank"
+      )
+    }
+  >
+    💬 Consult Guruji Vijay Sharma Ji
+
+    <small>
+      Usually replies within 10 minutes
+    </small>
+
+  </button>
+
+  <button
+    className="logout-btn"
+    onClick={logout}
+  >
+    Logout
+  </button>
+
+</div>
 
           {/* MAIN */}
 
@@ -270,137 +343,237 @@ if (progress === 100) {
 
             {/* PROFILE PROGRESS */}
 
-            <div className="profile-card">
+            <div className="profile-card profile-progress-card">
 
-              <h3>Profile Completion</h3>
+  <div className="progress-header">
 
-              <div className="progress-bar">
-                <div
-                  className="progress-fill"
-                  style={{ width: `${progress}%` }}
-                ></div>
-              </div>
-<p className="completion-text">
-  Complete your profile to receive
-  more personalized gemstone and
-  astrology recommendations.
-</p>
-              <span>{progress}% completed</span>
+    <div>
 
-            </div>
+      <h3>Profile Completion</h3>
+
+      <p>
+        Complete your astrology profile to unlock
+        better gemstone recommendations.
+      </p>
+
+    </div>
+
+    <div className="progress-circle">
+
+      <div className="progress-circle-inner">
+
+        <span>{progress}%</span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div className="progress-bar">
+
+    <div
+      className="progress-fill"
+      style={{ width: `${progress}%` }}
+    ></div>
+
+  </div>
+
+  <div className="completion-benefits">
+
+    <div className={user.dob ? "done" : ""}>
+      {user.dob ? "✓" : "○"} Date of Birth
+    </div>
+
+    <div className={user.birthTime ? "done" : ""}>
+      {user.birthTime ? "✓" : "○"} Birth Time
+    </div>
+
+    <div className={user.birthPlace ? "done" : ""}>
+      {user.birthPlace ? "✓" : "○"} Birth Place
+    </div>
+
+    <div className={user.avatar ? "done" : ""}>
+      {user.avatar ? "✓" : "○"} Profile Photo
+    </div>
+
+  </div>
+
+</div>
 
 
             {/* ASTROLOGY DETAILS */}
 
             <div className="profile-card">
 
-              <h3>Astrology Details</h3>
+  <div className="card-title-row">
 
-              <div className="astro-row">
-                <label>🌙 Date of Birth</label>
+    <h3>✨ Astrology Details</h3>
 
-                {editMode ? (
-                  <input
-                    type="date"
-                    name="dob"
-                    value={form.dob}
-                    onChange={handleChange}
-                  />
-                ) : (
-                  <span>{user.dob || "Not set"}</span>
-                )}
-              </div>
+    {!editMode && (
+      <button
+        className="edit-btn"
+        onClick={() => setEditMode(true)}
+      >
+        Edit
+      </button>
+    )}
 
+  </div>
 
-              <div className="astro-row">
-                <label>⏳ Birth Time</label>
+  <div className="astro-grid">
 
-                {editMode ? (
-                  <input
-                    type="time"
-                    name="birthTime"
-                    value={form.birthTime}
-                    onChange={handleChange}
-                  />
-                ) : (
-                  <span>{user.birthTime || "Not set"}</span>
-                )}
-              </div>
+    <div className="astro-item">
 
+      <label>☀ Date of Birth</label>
 
-              <div className="astro-row">
-                <label>📍 Birth Place</label>
+      {editMode ? (
+        <input
+          type="date"
+          name="dob"
+          value={form.dob}
+          onChange={handleChange}
+        />
+      ) : (
+        <span>{user.dob || "Not Set"}</span>
+      )}
 
-                {editMode ? (
-                  <input
-                    type="text"
-                    name="birthPlace"
-                    value={form.birthPlace}
-                    onChange={handleChange}
-                  />
-                ) : (
-                  <span>{user.birthPlace || "Not set"}</span>
-                )}
-              </div>
+    </div>
 
+    <div className="astro-item">
 
-              <div className="astro-row">
-                <label>♈ Zodiac Sign</label>
-                <span>{getZodiacSign(user.dob)}</span>
-              </div>
+      <label>🌙 Birth Time</label>
 
+      {editMode ? (
+        <input
+          type="time"
+          name="birthTime"
+          value={form.birthTime}
+          onChange={handleChange}
+        />
+      ) : (
+        <span>{user.birthTime || "Not Set"}</span>
+      )}
 
-              <div className="profile-actions">
+    </div>
 
-                {editMode ? (
-                  <>
-                    <button onClick={saveProfile}>
-                      Save Changes
-                    </button>
+    <div className="astro-item">
 
-                    <button
-                      className="secondary"
-                      onClick={() => setEditMode(false)}
-                    >
-                      Cancel
-                    </button>
-                  </>
-                ) : (
-                  <button onClick={() => setEditMode(true)}>
-                    Edit Astrology Details
-                  </button>
-                )}
+      <label>📍 Birth Place</label>
 
-              </div>
+      {editMode ? (
+        <input
+          type="text"
+          name="birthPlace"
+          value={form.birthPlace}
+          onChange={handleChange}
+        />
+      ) : (
+        <span>{user.birthPlace || "Not Set"}</span>
+      )}
 
-            </div>
+    </div>
 
+    <div className="astro-item">
+
+      <label>♈ Zodiac Sign</label>
+
+      <span>{getZodiacSign(user.dob)}</span>
+
+    </div>
+
+    <div className="astro-item">
+
+      <label>💎 Lucky Gem</label>
+
+      <span>Coming Soon</span>
+
+    </div>
+
+    <div className="astro-item">
+
+      <label>🪐 Ruling Planet</label>
+
+      <span>Coming Soon</span>
+
+    </div>
+
+  </div>
+
+  {editMode && (
+
+    <div className="profile-actions">
+
+      <button onClick={saveProfile}>
+        Save Changes
+      </button>
+
+      <button
+        className="secondary"
+        onClick={() => {
+          setForm({
+            dob: user?.dob || "",
+            birthTime: user?.birthTime || "",
+            birthPlace: user?.birthPlace || "",
+          });
+
+          setEditMode(false);
+        }}
+      >
+        Cancel
+      </button>
+
+    </div>
+
+  )}
+
+</div>
 
             {/* SECURITY */}
 
             <div className="profile-card">
 
-             <div className="profile-card">
-
-  <h3>Account Status</h3>
+  <h3>🔐 Account Status</h3>
 
   <div className="security-row">
-    <span>Email Verified</span>
-    <strong>✓ Verified</strong>
+
+    <span>Email Verification</span>
+
+    <strong>✅ Verified</strong>
+
   </div>
 
   <div className="security-row">
+
     <span>Account Type</span>
+
     <strong>
       {user.authProvider === "google"
         ? "Google Account"
         : "Email Account"}
     </strong>
+
+  </div>
+
+  <div className="security-row">
+
+    <span>Profile Completion</span>
+
+    <strong>{progress}%</strong>
+
+  </div>
+
+  <div className="security-row">
+
+    <span>Member Since</span>
+
+    <strong>
+      {new Date(user.createdAt).toLocaleDateString()}
+    </strong>
+
   </div>
 
 </div>
-
-            </div>
 
           </div>
 

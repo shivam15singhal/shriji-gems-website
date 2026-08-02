@@ -1354,6 +1354,15 @@ display:none;
   .About-trust-header p{
     font-size:14px;
   }
+  .clickable{
+  cursor:pointer;
+  transition:.3s;
+}
+
+.clickable:hover{
+  transform:translateY(-6px);
+  box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
 
   .About-trust-card{
     padding:28px 22px;

@@ -104,6 +104,15 @@
   box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    text-decoration:none;
+}
+
+.gem-card h3{
+text-decoration:none;
+}
+
+.gem-card p{
+text-decoration:none;
 }
 
 .gem-card::before {
@@ -144,29 +153,28 @@
    IMAGE CONTAINER
 ================================ */
 .gem-image{
+    position:relative;
 
-    height:260px;
+    height:280px;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    padding:25px;
+    overflow:hidden;
 
     background:
-
     radial-gradient(circle at top,
-    #fffdfd,
-    #fff2f7);
+    #fffdfd 10%,
+    #fff5f8 70%);
 
+    border-bottom:1px solid rgba(255,192,203,.2);
 }
 
 .gem-image img{
-
-    max-width:82%;
-    max-height:82%;
-
-    object-fit:contain;
+max-width:92%;
+max-height:92%;
+filter:drop-shadow(0 18px 20px rgba(0,0,0,.18));
 
     transition:.5s;
 }
