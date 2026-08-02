@@ -3,27 +3,17 @@ const bcrypt = require("bcryptjs");
 const { OAuth2Client } = require("google-auth-library");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const multer = require("multer");
-const path = require("path");
+
 const crypto = require("crypto");
 const { sendEmail } = require("../utils/sendEmail");
-
 const router = express.Router();
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+const upload = require("../middleware/uploadGemImage");
 
 /* ======================
    MULTER CONFIG
 ====================== */
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
 
-const upload = multer({ storage });
 
 /* ======================
    SIGNUP
@@ -207,70 +197,102 @@ router.post(
 
       const user = await User.findByIdAndUpdate(
         decoded.id,
-        { avatar: `/uploads/${req.file.filename}` },
-        { new: true }
+        {
+          avatar: req.file.path,
+        },
+        {
+          new: true,
+        }
       ).select("-password");
 
       res.json({ user });
-    } catch {
-      res.status(400).json({ message: "Avatar upload failed" });
+    } catch (err) {
+      console.error(err);
+
+      res.status(400).json({
+        message: "Avatar upload failed",
+      });
     }
   }
 );
 
-
-router.post("/forgot-password", async (req,res)=>{
-  try{
+router.post("/forgot-password", async (req, res) => {
+  try {
 
     const { email } = req.body;
 
     const user = await User.findOne({ email });
 
-    if(!user){
+    if (!user) {
       return res.status(404).json({
-        success:false,
-        message:"User not found"
+        success: false,
+        message: "User not found",
       });
     }
 
-    const resetToken =
-      crypto.randomBytes(32).toString("hex");
+    const resetToken = crypto.randomBytes(32).toString("hex");
 
     user.resetPasswordToken = resetToken;
-
-    user.resetPasswordExpire =
-      Date.now() + 1000 * 60 * 15;
+    user.resetPasswordExpire = Date.now() + 1000 * 60 * 15;
 
     await user.save();
 
-    FRONTEND_URL=process.env.FRONTEND_URL || "http://localhost:3000";
+    const FRONTEND_URL =
+      process.env.FRONTEND_URL || "http://localhost:3000";
+
+    const resetUrl = `${FRONTEND_URL}/reset-password/${resetToken}`;
+
     await sendEmail({
-      to:user.email,
-      subject:"Reset Your Password",
-      html:`
+      to: user.email,
+      subject: "Reset Your Password",
+      html: `
         <h2>Password Reset</h2>
 
-        <p>Click below link:</p>
+        <p>You requested to reset your password.</p>
 
-        <a href="${resetUrl}">
+        <p>Click the button below to reset it:</p>
+
+        <a
+          href="${resetUrl}"
+          style="
+            display:inline-block;
+            padding:12px 20px;
+            background:#c9a23f;
+            color:#ffffff;
+            text-decoration:none;
+            border-radius:6px;
+            font-weight:bold;
+          "
+        >
           Reset Password
         </a>
 
-        <p>Valid for 15 minutes.</p>
-      `
+        <p style="margin-top:20px;">
+          Or copy and paste this link into your browser:
+        </p>
+
+        <p>${resetUrl}</p>
+
+        <p>This link is valid for <strong>15 minutes</strong>.</p>
+
+        <p>If you didn't request a password reset, you can safely ignore this email.</p>
+      `,
     });
 
     res.json({
-      success:true,
-      message:"Reset email sent"
+      success: true,
+      message: "Reset email sent",
     });
 
-  }catch(err){
-    console.log(err);
+  } catch (err) {
+
+    console.error(err);
 
     res.status(500).json({
-      success:false
+      success: false,
+      message: "Failed to send reset email",
     });
+
   }
 });
 
