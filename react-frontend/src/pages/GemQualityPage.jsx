@@ -18,14 +18,14 @@ const API_BASE =
   );
 };
 
-const optimizeVideo = (url) => {
-  if (!url || !url.includes("res.cloudinary.com")) return url;
+// const optimizeVideo = (url) => {
+//   if (!url || !url.includes("res.cloudinary.com")) return url;
 
-  return url.replace(
-    "/video/upload/",
-    "/video/upload/f_auto,q_auto,vc_auto/"
-  );
-};
+//   return url.replace(
+//     "/video/upload/",
+//     "/video/upload/f_auto,q_auto,vc_auto/"
+//   );
+// };
 
 function GemQualityPage() {
 
